@@ -42,7 +42,7 @@ github: lwamuhaji # Add your Github handle
 
 # Disqus
 discus_identifier: lwamuhaji-github-io # Add your discus identifier
-comments_curtain: # leave empty to show the disqus embed directly
+comments_curtain: yes # leave empty to show the disqus embed directly
 
 # Tracker
 analytics: G-R8SZS2YBZK
