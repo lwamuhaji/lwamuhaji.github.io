@@ -4,7 +4,6 @@ read_time: true
 show_date: true
 title: "Who owns the copyright for an AI generated creative work?"
 date: 2021-04-20
-img:
 tags: [copyright, creativity, neural networks, machine learning, artificial intelligence]
 category: opinion
 author: Armando Maynez
