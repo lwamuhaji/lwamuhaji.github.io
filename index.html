@@ -8,10 +8,12 @@
     <title>Jshuh's Blog</title>
   </head>
   <body class="h-screen flex flex-col">
-    <header class="bg-slate-300 py-8">
-      <h1 class="text-3xl font-bold max-w-screen-md mx-auto">Jshuh's Blog</h1>
+    <header class="bg-slate-300 py-8 whitespace-normal">
+      <h1 class="text-3xl font-bold max-w-screen-md mx-auto my-0">
+        Jshuh's Blog
+      </h1>
     </header>
-    <nav class="bg-slate-200">
+    <nav class="bg-slate-200 whitespace-normal">
       <div
         class="max-w-screen-md mx-auto flex gap-8 py-4 [&>div]:hover:cursor-pointer"
       >
@@ -21,7 +23,7 @@
       </div>
     </nav>
     <main
-      class="[&>*]:max-w-screen-md [&>*]:mx-auto grow p-8 bg-slate-50 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"
+      class="[&>*]:max-w-screen-md [&>*]:mx-auto overflow-auto grow p-8 bg-slate-50 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"
     ></main>
     <script>
       $("main").load("introduce.html")
