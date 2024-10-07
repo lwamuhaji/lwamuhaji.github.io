@@ -1,3 +1,777 @@
-<div>
-  <h1>Java</h1>
-</div>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>자바</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="1173b2cf-df3f-80da-96f6-c24944d5c8c6" class="page sans"><header><h1 class="page-title">자바</h1><p class="page-description"></p></header><div class="page-body"><blockquote id="1183b2cf-df3f-8046-b945-d8f6ba07cb3e" class="">목차</blockquote><nav id="1173b2cf-df3f-803a-bc76-d9318732e839" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#1173b2cf-df3f-80bc-bb84-c3ddc3a9b0bb">1. 개요</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#1173b2cf-df3f-8055-a451-dba93a6a3912">2. JVM</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1173b2cf-df3f-80a2-ae49-fb6295dc5bfb">자바 프로그램 실행 과정</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1173b2cf-df3f-8010-a439-d8a87fbed6ed">구조</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#1173b2cf-df3f-80d8-8b68-f909090c5d35">Class Loader</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#1173b2cf-df3f-80cf-80cf-cfece25a5a54">Execution Engine</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#1183b2cf-df3f-804c-8552-f95aa938ac63">Runtime Data Area</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#1183b2cf-df3f-80e1-a5c0-e0c3d0243101">JNI (Java Native Interface)</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#1173b2cf-df3f-802e-8032-e3a96c368c15">3. 객체 지향</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1183b2cf-df3f-8060-9866-f3cc2b342e9a">클래스와 인스턴스</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1183b2cf-df3f-809c-ac89-d1c57f2abb47">상속</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1183b2cf-df3f-80e5-b3a5-c5b560592cd8">접근제한자</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1183b2cf-df3f-8001-b935-ccc75c766c48">추상 클래스</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1183b2cf-df3f-80e0-a136-f0319c7fb961">인터페이스</a></div></nav><h1 id="1173b2cf-df3f-80bc-bb84-c3ddc3a9b0bb" class="">1. 개요</h1><p id="1173b2cf-df3f-80ec-afdd-f03036462c7d" class="">자바는 1995년 개발된 객체 지향 프로그래밍 언어로, 현재까지도 여러 분야에서 많이 쓰이고 있다. 최근에는 하향 추세를 타고 있지만, 많은 서비스들이 이미 자바로 개발되어 있어 아직 수요가 있다. 특히 한국은 자바 공화국이라고 불릴 정도로 소프트웨어 개발 비율에서 자바가 차지하는 비율이 높다. 따라서 자바를 조사하게 되었다.</p><h1 id="1173b2cf-df3f-8055-a451-dba93a6a3912" class="">2. JVM</h1><p id="1173b2cf-df3f-8051-b7fb-c7f4b8e194d3" class="">자바의 가장 큰 특징은 JVM을 통해 플랫폼에 독립적으로 컴파일되고 실행될 수 있다는 점이다.</p><p id="1173b2cf-df3f-80f9-84d8-fe940ea20778" class="">
+</p><h2 id="1173b2cf-df3f-80a2-ae49-fb6295dc5bfb" class="">자바 프로그램 실행 과정</h2><figure id="1183b2cf-df3f-80b9-9ec9-cb7c84d63628" class="image"><a href="https://velog.velcdn.com/images/house1021/post/7d76cc8c-608b-4202-bb25-aa52c57a0c65/image.png"><img src="https://velog.velcdn.com/images/house1021/post/7d76cc8c-608b-4202-bb25-aa52c57a0c65/image.png"/></a></figure><ol type="1" id="1173b2cf-df3f-8014-a98a-f087b108f1b6" class="numbered-list" start="1"><li>프로그래머가 .java 파일을 작성한다.</li></ol><ol type="1" id="1173b2cf-df3f-80a2-8d2c-feb57fcc1d88" class="numbered-list" start="2"><li>자바 컴파일러가 .java 파일을 bytecode(.class)로 변환한다.</li></ol><ol type="1" id="1173b2cf-df3f-801b-9d61-d571f95b8f97" class="numbered-list" start="3"><li>JVM이 bytecode를 OS에 맞게 해석해준다.</li></ol><p id="1173b2cf-df3f-809d-b567-c75c8c533616" class="">
+</p><h2 id="1173b2cf-df3f-8010-a439-d8a87fbed6ed" class="">구조</h2><p id="1173b2cf-df3f-805c-ab0d-cd7947cbeef8" class="">JVM의 구조는 다음과 같다</p><ul id="1173b2cf-df3f-80fa-a4a7-d77dc7f34056" class="bulleted-list"><li style="list-style-type:disc">Class Loader</li></ul><ul id="1173b2cf-df3f-80d3-9f1b-e367badcaf0f" class="bulleted-list"><li style="list-style-type:disc">Execution Engine<ul id="1173b2cf-df3f-807b-a355-e5dc83c8ea0b" class="bulleted-list"><li style="list-style-type:circle">Interpreter</li></ul><ul id="1173b2cf-df3f-8080-9e16-ce2e571ebddf" class="bulleted-list"><li style="list-style-type:circle">JIT Compiler</li></ul><ul id="1173b2cf-df3f-80e4-9fd9-e934ac04180c" class="bulleted-list"><li style="list-style-type:circle">Garbage collector</li></ul></li></ul><ul id="1173b2cf-df3f-8047-9767-e26acf0afcfd" class="bulleted-list"><li style="list-style-type:disc">Runtime Data Area<ul id="1173b2cf-df3f-8054-bcdc-fe9acc1481b8" class="bulleted-list"><li style="list-style-type:circle">Class Area</li></ul><ul id="1173b2cf-df3f-8067-950b-f2d1dfe0871b" class="bulleted-list"><li style="list-style-type:circle">Heap Area</li></ul><ul id="1173b2cf-df3f-807c-a12f-f02ced574960" class="bulleted-list"><li style="list-style-type:circle">PC Register</li></ul><ul id="1173b2cf-df3f-802d-ab9e-cd280cb8b8ae" class="bulleted-list"><li style="list-style-type:circle">Stack Area</li></ul><ul id="1173b2cf-df3f-805b-8955-e3adb60fb87a" class="bulleted-list"><li style="list-style-type:circle">Native Method Stack Area</li></ul></li></ul><ul id="1173b2cf-df3f-8017-b742-c6fcb9189b02" class="bulleted-list"><li style="list-style-type:disc">JNI</li></ul><p id="1173b2cf-df3f-8084-97e2-f669dbd814f0" class="">
+</p><h3 id="1173b2cf-df3f-80d8-8b68-f909090c5d35" class="">Class Loader</h3><p id="1173b2cf-df3f-8026-856c-d559a9d79de6" class="">클래스 로더는 Loading → Linking → Initialization 의 세 단계를 거쳐서 .class 파일을 Runtime Data Area에 올린다.</p><ol type="1" id="1173b2cf-df3f-802e-bcdf-d50e71015399" class="numbered-list" start="1"><li>Loading<p id="1173b2cf-df3f-806b-bc51-c52fbb119696" class="">class 파일들을 JVM 메모리에 로드한다.</p></li></ol><ol type="1" id="1173b2cf-df3f-80c6-986c-c174e8f75533" class="numbered-list" start="2"><li>Linking<p id="1173b2cf-df3f-800b-b948-ce3c2355e9d2" class="">class 파일을 사용하기 위해 클래스가 제대로 구성되어 있는지 검증하고 메모리를 할당한다.</p></li></ol><ol type="1" id="1173b2cf-df3f-80f3-9d53-e53e908893d3" class="numbered-list" start="3"><li>Initialization<p id="1173b2cf-df3f-806b-b91a-e00cf75482c8" class="">클래스 변수들을 적절한 값으로 초기화한다.</p><p id="1183b2cf-df3f-807b-a574-fc1c7bdff9fb" class="">
+</p></li></ol><h3 id="1173b2cf-df3f-80cf-80cf-cfece25a5a54" class="">Execution Engine</h3><ul id="1183b2cf-df3f-8098-a57d-ec1d4950838d" class="bulleted-list"><li style="list-style-type:disc">Interpreter</li></ul><p id="1173b2cf-df3f-809d-b8e2-d7083bdbe729" class="">클래스 로더가 Runtime Data Area에 올린 바이트코드를 인터프리터가 명령어 단위로 읽어서 실행한다. </p><ul id="1183b2cf-df3f-807e-b4c3-e8189d068514" class="bulleted-list"><li style="list-style-type:disc">JIT Compiler</li></ul><p id="1183b2cf-df3f-8027-bf8f-f83445fdeb11" class="">인터프리터 방식은 매번 바이트코드를 기계어로 해석해 실행하므로 속도가 느리다. Just In Time 컴파일러는 프로그램 실행 중에 바이트코드를 실시간으로 읽어서 필요한 부분만 컴파일하고 최적화한다. 기계어로 변환된 코드는 캐시에 저장되기 때문에 재사용시 다시 컴파일할 필요가 없다.</p><ul id="1183b2cf-df3f-806b-a37a-f11e4506d19f" class="bulleted-list"><li style="list-style-type:disc">Garbage Collector</li></ul><p id="1183b2cf-df3f-8084-b225-f16495b72be0" class="">가비지 컬렉터는 힙 영역에서 더이상 사용되지 않는 메모리를 알아서 해제해준다. </p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1183b2cf-df3f-8034-ba5a-ff4ec22779a0" class="code"><code class="language-Java">for (int i = 0; i &lt; 10000; i++) {
+  NewObject obj = new NewObject();  
+  obj.doSomething();
+}</code></pre><p id="1173b2cf-df3f-8012-ba87-f0eb3f46ee8a" class="">위 코드에서 for 문이 돌고 나면 obj 객체에 접근할 수 있는 방법이 없다. 따라서 해당 객체는 더이상 메모리를 차지하고 있을 필요가 없으며, 이 상태를 unreachable이라고 한다. 가비지컬렉터는 주기적으로 unreachable 상태의 객체들을 정리한다.</p><p id="1183b2cf-df3f-803d-81a6-c86dafcbe27d" class="">
+</p><h3 id="1183b2cf-df3f-804c-8552-f95aa938ac63" class="">Runtime Data Area</h3><ul id="1183b2cf-df3f-80ac-973c-e4c3510f33bf" class="bulleted-list"><li style="list-style-type:disc">Class Area<p id="1183b2cf-df3f-801f-8b89-cc3c67a29c21" class="">이 영역은 JVM이 시작되면서 생성되며, 바이트 코드 초기화에 필요한 정보들이 저장된다.</p><ul id="1183b2cf-df3f-806c-b0ef-fa40d35712f7" class="bulleted-list"><li style="list-style-type:circle">필드: 멤버 변수의 이름, 데이터 타입, 접근 제한자</li></ul><ul id="1183b2cf-df3f-8045-9c42-c03404a4d562" class="bulleted-list"><li style="list-style-type:circle">메소드: 메소드 이름, 매개변수와 리턴타입, 접근 제한자</li></ul><ul id="1183b2cf-df3f-80fd-96e2-d4ca71f6c1ad" class="bulleted-list"><li style="list-style-type:circle">클래스: Class, Interface 여부, Super Class의 정보</li></ul></li></ul><ul id="1183b2cf-df3f-809c-9cf4-e6fb5e705dd4" class="bulleted-list"><li style="list-style-type:disc">Heap Area<p id="1183b2cf-df3f-803d-a57f-e9fe3cfa6ca0" class="">이 영역은 런타임에 동적으로 할당되는 공간이다. new 연산자로 생성되는 객체가 저장되며, 가비지 컬렉터의 대상이 되는 공간이다.</p></li></ul><ul id="1183b2cf-df3f-80a5-ba78-db189859d5a6" class="bulleted-list"><li style="list-style-type:disc">Stack Area<p id="1183b2cf-df3f-805b-a503-c6e1811503c2" class="">자바 메소드 호출 시 스택프레임이 push되고 메소드가 종료되면 pop된다.</p><p id="1183b2cf-df3f-807b-b4cd-f4746da180fb" class="">메소드의 매개변수, 로컬변수, 리턴값 등이 저장된다.</p></li></ul><ul id="1183b2cf-df3f-800d-883d-ee2446c24ab2" class="bulleted-list"><li style="list-style-type:disc">PC Register<p id="1183b2cf-df3f-80a7-9a7b-c750511d51af" class="">스레드가 자바의 메소드를 실행하고 있을 때, 실행 중인 JVM 명령의 주소가 여기에 저장된다.</p></li></ul><ul id="1183b2cf-df3f-8066-afe9-d02d41279429" class="bulleted-list"><li style="list-style-type:disc">Native Method Stack Area<p id="1183b2cf-df3f-8040-bb9a-ff2af5dc4af1" class="">자바 이외의 언어로 작성된 네이티브 메소드가 실행될 때, 스택 프레임이 여기에 push 된다.</p></li></ul><p id="1183b2cf-df3f-8063-9da1-fe0537670f2b" class="">
+</p><h3 id="1183b2cf-df3f-80e1-a5c0-e0c3d0243101" class="">JNI (Java Native Interface)</h3><p id="1183b2cf-df3f-8095-9901-fce670a1c9eb" class="">자바가 다른 네이티브 언어로 작성된 프로그램을 실행할 수 있도록 하는 인터페이스이다.</p><p id="1183b2cf-df3f-8043-8406-c62c284f6729" class="">Native Method Library에서 라이브러리 및 헤더를 로드해 실행한다.</p><h1 id="1173b2cf-df3f-802e-8032-e3a96c368c15" class="">3. 객체 지향</h1><h2 id="1183b2cf-df3f-8060-9866-f3cc2b342e9a" class="">클래스와 인스턴스</h2><p id="1183b2cf-df3f-8042-b4d6-fd520c928aad" class="">아래 코드는 멤버변수 name과 메소드 eat을 갖는 Animal 클래스를 정의하고, Main 클래스에서 인스턴스화 한 뒤 eat 메소드를 호출하는 코드이다.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1183b2cf-df3f-80f9-9e6b-e0d80e1f465a" class="code"><code class="language-Java">public class Animal {
+    protected String name; // 멤버변수
+
+    Animal(String name) { // 생성자
+        this.name = name;
+    }
+    
+    public void eat() { // 메소드
+        System.out.println(this.name + &quot; eats&quot;);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Animal animal = new Animal(&quot;Andy&quot;); // Aniaml 클래스 인스턴스화
+        animal.eat(); // 인스턴스 메소드 호출
+    }
+}</code></pre><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="1183b2cf-df3f-80a3-bcb1-c892d1af4e35"><div style="font-size:1.5em"><span class="icon">🖨️</span></div><div style="width:100%"><p id="5d9fbf96-32da-4b3e-917d-692e3b2e5167" class="">Andy eats</p></div></figure><p id="1183b2cf-df3f-801c-a9ca-c14fe65c6beb" class="">
+</p><h2 id="1183b2cf-df3f-809c-ac89-d1c57f2abb47" class="">상속</h2><p id="1183b2cf-df3f-8046-b5a0-d6b523c6bf98" class="">상속을 이용하면 부모 클래스의 멤버변수와 메소드를 물려받아 코드를 재사용할 수 있다. 아래 코드는 Animal 클래스를 상속받은 Dog 클래스를 보여준다.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1183b2cf-df3f-8049-adea-ca8cdf39bda2" class="code"><code class="language-Java">public class Dog extends Animal {
+    Dog(String name) {
+        super(name); // 부모 생성자 호출
+    }
+
+    public void eat() {
+        System.out.println(&quot;A dog &quot; + this.name + &quot; eats&quot;); // 부모의 name 변수 사용
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Animal dog = new Dog(&quot;Andy&quot;);
+        dog.eat();
+    }
+}</code></pre><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="1183b2cf-df3f-806a-a48f-e5cc24660388"><div style="font-size:1.5em"><span class="icon">🖨️</span></div><div style="width:100%"><p id="b842a8aa-6a2f-4873-b031-2b959f16a557" class="">Andy eats</p></div></figure><p id="1183b2cf-df3f-80da-af27-df6bf86d645e" class="">
+</p><h2 id="1183b2cf-df3f-80e5-b3a5-c5b560592cd8" class="">접근제한자</h2><p id="1183b2cf-df3f-8095-bca6-ea211ad11dfb" class="">자바에는 public, protected, default, private 접근제한자가 있다.</p><ul id="1183b2cf-df3f-8018-a8f7-e9dbaf6634a9" class="bulleted-list"><li style="list-style-type:disc">public: 제한 없음</li></ul><ul id="1183b2cf-df3f-80ab-bf1d-f8c1faddcb68" class="bulleted-list"><li style="list-style-type:disc">protected<strong>:</strong> 같은 패키지 또는 자식 클래스에서 접근 가능</li></ul><ul id="1183b2cf-df3f-801d-9147-d2faf69089ea" class="bulleted-list"><li style="list-style-type:disc">private<strong>:</strong> 자기 자신 이외에 접근 불가</li></ul><ul id="1183b2cf-df3f-80e3-befc-d09e8c075b7f" class="bulleted-list"><li style="list-style-type:disc">default<strong>:</strong> 같은 패키지에서만 접근 가능</li></ul><p id="1183b2cf-df3f-808a-8c33-e37e2ad5c3ca" class="">
+</p><p id="1183b2cf-df3f-804d-9968-c5980069a7d3" class="">예를 들어, 방금 사용했던 예시에서 멤버변수 name의 접근 제한자를 protected에서 private으로 변경하면 Dog 클래스에서 엑세스 관련 에러가 발생한다.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1183b2cf-df3f-80c0-a3dd-ef8547f25a88" class="code"><code class="language-Java">public class Animal {
+    private String name; // 접근제한자 변경
+
+    Animal(String name) { 
+        this.name = name;
+    }
+    
+    public void eat() {
+        System.out.println(this.name + &quot; eats&quot;);
+    }
+}
+
+public class Dog extends Animal {
+    Dog(String name) {
+        super(name);
+    }
+
+    public void eat() {
+        System.out.println(&quot;A dog &quot; + this.name + &quot; eats&quot;); // 에러 발생
+    }
+}</code></pre><p id="1183b2cf-df3f-8035-b9a3-c1c25bc08a2c" class="">
+</p><h2 id="1183b2cf-df3f-8001-b935-ccc75c766c48" class="">추상 클래스</h2><p id="1183b2cf-df3f-804a-ae3b-f23407941f81" class="">추상 클래스는 <strong>하나 이상의 추상 메소드를 가지는 클래스</strong>를 말한다.</p><p id="1183b2cf-df3f-800a-bea9-c3e73d72179b" class="">자식 클래스에 따라 부모 메소드의 동작이 달라지는 경우 추상 메소드로 정의하고 구현부는 비워둬서 자식 클래스에서 구현을 강제한다. 실체가 없으므로 추상 클래스는 인스턴스화 할 수 없다.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1183b2cf-df3f-8095-8af4-da341b95777c" class="code"><code class="language-Java">public abstract class Animal {
+    protected String name;
+
+    Animal(String name) { 
+        this.name = name;
+    }
+    
+    public abstract void eat(); // 추상 메소드: 바디를 비워둔다.
+}
+
+public class Dog extends Animal {
+    Dog(String name) {
+        super(name);
+    }
+
+    public void eat() { // 부모의 추상 메소드를 직접 구현
+        System.out.println(&quot;A dog &quot; + this.name + &quot; eats&quot;); 
+    }
+}</code></pre><p id="1183b2cf-df3f-800c-925d-c8dfc97bf976" class="">
+</p><h2 id="1183b2cf-df3f-80e0-a136-f0319c7fb961" class="">인터페이스</h2><p id="1183b2cf-df3f-80d2-b580-d7f9cc9b6565" class="">인터페이스는 그 안에 정의된 메소드가 모두 추상 메소드여야 하고(java 8 부터는 바디가 구현되어 있는 default 메소드도 가질 수 있다) 상속받는 쪽에서 모두 구현해주어야 한다는 점에서 추상 클래스와 닮은 점이 있다.</p><p id="1183b2cf-df3f-80b7-88ac-f7b1dd28af9e" class="">하지만 큰 범위(부모)와 작은 범위(자식)의 관계가 있는 클래스와 달리 인터페이스는 단지 구현해야할 것들을 모아 놓은 집합이라는 점에서 큰 차이가 있다. 또한 클래스와 달리 다중 상속을 지원한다.</p><figure id="1183b2cf-df3f-800e-b22c-ebec447a235f" class="image"><a href="https://blog.kakaocdn.net/dn/dHI2f5/btrOqD99xBN/YS6EZ4pnNpeCukAiC4CLvK/img.png"><img src="https://blog.kakaocdn.net/dn/dHI2f5/btrOqD99xBN/YS6EZ4pnNpeCukAiC4CLvK/img.png"/></a></figure><p id="1183b2cf-df3f-80ac-82fd-cffba575676c" class="">또한 상속 시 확장한다는 뜻의 extends가 아닌 구현한다는 뜻의 implements를 사용한다.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1183b2cf-df3f-8069-9058-cdc663d41f3b" class="code"><code class="language-Java">public interface Swimmable {
+    void swim();
+}
+
+public class Dog extends Animal implements Swimmable {
+    Dog(String name) {
+        super(name);
+    }
+
+    public void eat() { 
+        System.out.println(&quot;A dog &quot; + this.name + &quot; eats&quot;);
+    }
+    
+    public void swim() { // 인터페이스의 추상 메소드를 구현
+        System.out.println(&quot;A dog &quot; + this.name + &quot; swims&quot;);
+    }
+}</code></pre></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
