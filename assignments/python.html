@@ -1,0 +1,781 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>파이썬</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="1183b2cf-df3f-8058-86b7-f4a1b33cf8d3" class="page sans"><header><h1 class="page-title">파이썬</h1><p class="page-description"></p></header><div class="page-body"><blockquote id="1183b2cf-df3f-803c-b408-f5feaf279413" class="">목차</blockquote><nav id="1183b2cf-df3f-80f8-a387-f8b8bc24d67e" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#1183b2cf-df3f-80fd-9978-ce59f4e884cd">1. 개요</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#1183b2cf-df3f-805a-a9d8-f60287d66140">2. PVM</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#1183b2cf-df3f-80ea-8a09-cce2d0e547a9">3. GIL</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1183b2cf-df3f-8098-9325-c255630cf50d">메모리 관리와 GIL</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#1183b2cf-df3f-8004-bec2-ce2381d19021">4. 객체지향</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1183b2cf-df3f-80d6-9b0f-e5f2c252732b">클래스와 인스턴스</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1183b2cf-df3f-808b-8b0a-f09079a172e1">변수와 메소드</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1183b2cf-df3f-802c-a251-e95476cc5061">상속</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1183b2cf-df3f-806e-8832-d17e97a23cee">접근제한자</a></div></nav><p id="1183b2cf-df3f-8053-9706-e1617940f07c" class="">
+</p><h1 id="1183b2cf-df3f-80fd-9978-ce59f4e884cd" class="">1. 개요</h1><p id="1183b2cf-df3f-80b7-b9bb-e66ee6792d25" class="">파이썬은 1991년 귀도 반 로섬이 개발한 인터프리터 프로그래밍 언어이다. 절차지향, 객체지향, 함수형 프로그래밍을 모두 지원하는 멀티 패러다임 언어이기도 하다. AI와 빅데이터 처리 열풍에 힘입어 TIOBE 언어 순위 1위에 랭크되었으며, 앞으로도 꾸준한 상승세가 예상되기에 이 언어를 조사 대상으로 선택하였다.</p><p id="1183b2cf-df3f-8074-a869-d0d9ecfec4a4" class="">
+</p><h1 id="1183b2cf-df3f-805a-a9d8-f60287d66140" class="">2. PVM</h1><p id="1183b2cf-df3f-80bb-ae76-eb93d2cc68eb" class="">자바에 JVM이 있다면 파이썬에는 PVM이 있다. 자바와 비슷하게 파이썬 인터프리터는 .py 파일을 바로 실행하지 않고, 바이트코드로 변환한 뒤 실행한다. 이때 생성된 바이트코드는 OS에 독립적이다. 이 PVM이 어떤 언어로 구현되어 있는 지에 따라 구현체가 결정된다. 가장 널리 쓰이는 CPython은 PVM이 C로 구현되어 있으며, Java로 구현된 Jython, 파이썬으로 구현된 PyPy 등이 존재한다.</p><figure id="1183b2cf-df3f-80f3-ac3c-ed0844694088" class="image"><a href="https://miintto.github.io/img/posts/python-pycache-interpreter.png"><img src="https://miintto.github.io/img/posts/python-pycache-interpreter.png"/></a></figure><p id="1183b2cf-df3f-80bb-97f9-c8106408a627" class="">
+</p><h1 id="1183b2cf-df3f-80ea-8a09-cce2d0e547a9" class="">3. GIL</h1><p id="1183b2cf-df3f-80dd-8d2b-e3978ba3e7c5" class="">파이썬 Global Interpreter Lock은 파이썬 인터프리터에서 동시에 여러 스레드가 실행될 때 발생할 수 있는 문제를 방지하기 위해 사용되는 메커니즘이다. GIL은 멀티스레드 환경에서 한 번에 하나의 스레드만이 파이썬 바이트코드를 실행할 수 있도록 제한한다.</p><h2 id="1183b2cf-df3f-8098-9325-c255630cf50d" class="">메모리 관리와 GIL</h2><p id="1183b2cf-df3f-80b8-a0d4-ea61a3270588" class="">파이썬은 <strong><span style="border-bottom:0.05em solid">reference counting</span></strong>을 통해 객체의 메모리를 관리한다. 파이썬에는 자바나 C++와는 달리primitive type이 없고 <strong><span style="border-bottom:0.05em solid">모든 것이 객체</span></strong>이며, 각 객체마다 참조되는 횟수를 카운팅하고 0이 되는 경우에 메모리에서 해제한다(GC).</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1183b2cf-df3f-8021-9ffd-f82c992d1857" class="code"><code class="language-Python">import sys
+a = []
+b = a
+sys.getrefcount(a)
+
+# 결과
+# []는 a, b, sys.getrefcount()에 의해 참조되고 있으므로 3
+3</code></pre><p id="1183b2cf-df3f-8040-ad2a-fd4216efe2de" class="">
+</p><p id="1183b2cf-df3f-8011-9153-f500ee144f61" class="">이때 만약 다수의 스레드에서 refcount를 수정하려고 하면 race condition이 발생할 수 있다. 파이썬은 이 문제를 해결하기 위해 전역으로 Lock을 걸어서 동시에 접근할 수 없도록 했다.</p><p id="1183b2cf-df3f-802b-a46d-df41a8adcb82" class="">
+</p><figure id="1183b2cf-df3f-805d-821b-dda84049e220" class="image"><a href="https://velog.velcdn.com/images/jaebig/post/aab9860c-765e-46fb-ad35-b29a3ad2ac05/image.png"><img src="https://velog.velcdn.com/images/jaebig/post/aab9860c-765e-46fb-ad35-b29a3ad2ac05/image.png"/></a></figure><p id="1183b2cf-df3f-8094-af90-cce86b24e065" class="">위 그림은 세 개의 스레드가 GIL 환경에서 수행되는 흐름을 나타낸 것이다. 기본적으로 I/O 작업이 발생할 때 GIL이 해제/휙득되며 실행 흐름이 다른 스레드로 넘어가는 것을 볼 수 있다. 따라서 I/O 작업이 주를 이루는 환경에서는 파이썬의 멀티스레드 대체적으로 효율적일 것이다. </p><p id="1183b2cf-df3f-80fa-924d-c597c6c6a1cd" class="">
+</p><figure id="1183b2cf-df3f-8028-82db-e0fef446e054" class="image"><a href="https://velog.velcdn.com/images/jaebig/post/af3e6819-3e6c-4673-a972-de8655440f37/image.png"><img src="https://velog.velcdn.com/images/jaebig/post/af3e6819-3e6c-4673-a972-de8655440f37/image.png"/></a></figure><p id="1183b2cf-df3f-80be-bb10-cbfd64944f70" class="">만약 I/O 작업이 이뤄지지 않는 경우 GIL을 휙득하고 5ms가 지나면 다른 스레드로 GIL을 넘겨주게 된다. 이런 경우가 빈번하다면 문맥교환 비용이 발생해 오히려 싱글스레드에 비해 성능저하가 일어날 수 있다. 따라서 파이썬으로 멀티스레드 프로그래밍을 하는 경우 GIL을 고려해 의도치 않은 결과를 얻지 않도록 해야한다.</p><p id="1183b2cf-df3f-800f-8c83-ca1dbad20245" class="">
+</p><h1 id="1183b2cf-df3f-8004-bec2-ce2381d19021" class="">4. 객체지향</h1><h2 id="1183b2cf-df3f-80d6-9b0f-e5f2c252732b" class="">클래스와 인스턴스</h2><p id="1183b2cf-df3f-809c-a0bf-f9143a25e2ab" class="">앞서 말했듯 파이썬에서 모든 데이터는 객체(인스턴스)이다. 원시 타입이 없으므로 일반 숫자 1 역시 클래스 int의 인스턴스이다.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1183b2cf-df3f-80f0-9263-d94abee3100f" class="code"><code class="language-Python"># 1의 타입을 출력한다.
+&gt;&gt;&gt; type(1)
+&lt;class &#x27;int&#x27;&gt;</code></pre><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1183b2cf-df3f-80eb-87d1-f34b5683ad95" class="code"><code class="language-Python"># 클래스 Animal을 선언하고 인스턴스화한다.
+class Animal:
+    pass
+
+animal = Animal()</code></pre><p id="1183b2cf-df3f-80f7-b561-ca87cd0ed2be" class="">
+</p><h2 id="1183b2cf-df3f-808b-8b0a-f09079a172e1" class="">변수와 메소드</h2><p id="1183b2cf-df3f-80e9-8558-f242bf097308" class="">파이썬은 간결하고 직관적인 문법으로 유명하다. 아래는 Animal 클래스 안에 클래스 변수 num_of_instances를 정의하고, 생성자 메소드에서 인스턴스 변수 name을 초기화하는 코드이다.</p><p id="1183b2cf-df3f-800c-8ae1-c8994e07f0f4" class="">여기서 self는 인스턴스 자기 자신을 의미하며, 객체를 통해 메소드를 호출하면 항상 첫 번째 매개변수 자리에 인스턴스가 넘겨지기 때문에 메소드를 정의할 때 첫 번째 매개변수로 항상 self를 지정해 주어야 한다.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1183b2cf-df3f-8041-863c-f09cb88115ae" class="code"><code class="language-Python">class Animal:
+    num_of_instances = 0
+
+    def __init__(self, name):
+        self.name = name
+    
+    def display(self):
+        print(self.name)
+
+animal = Animal(&quot;강아지&quot;)
+animal.display()
+
+# 결과
+강아지</code></pre><p id="1183b2cf-df3f-8035-9782-d831ed98a172" class=""><br/>self를 매개변수로 설정하지 않은 get_num_of_instances 메소드의 경우 객체를 통해 호출하면 에러가 발생한다. 이 경우 클래스를 통해 호출해야 한다.<br/></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1183b2cf-df3f-80a4-a0df-cab2b02ebd1a" class="code"><code class="language-Python">class Animal:
+    num_of_instances = 0
+
+    def __init__(self, name):
+        self.name = name
+        Animal.num_of_instances += 1
+    
+    def display(self):
+        print(self.name)
+    
+    def get_num_of_instances():
+        return Animal.num_of_instances
+
+animal = Animal(&quot;강아지&quot;)
+print(Animal.get_num_of_instances())
+
+# 결과
+1</code></pre><p id="1183b2cf-df3f-809d-bf3d-f5d680036228" class="">
+</p><p id="1183b2cf-df3f-80c9-b152-e3940b243a8e" class="">파이썬의 특별한 메소드들(생성자, 연산자, 소멸자 등)은 __으로 시작해서 __으로 끝난다. 아래는 덧셈 연산자 오버라이딩의 예시 코드이다.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1183b2cf-df3f-80ca-8a61-f81e828c8e50" class="code"><code class="language-Python">class Animal:
+    def __init__(self, name):
+        self.name = name
+    
+    def __add__(self, other):
+        return self.name + other.name
+
+dog = Animal(&quot;강아지&quot;)
+cat = Animal(&quot;고양이&quot;)
+print(dog + cat)
+
+# 결과
+강아지고양이</code></pre><p id="1183b2cf-df3f-805a-bdf6-de30c3b7df4e" class="">
+</p><h2 id="1183b2cf-df3f-802c-a251-e95476cc5061" class="">상속</h2><p id="1183b2cf-df3f-80af-8824-ed8ba2b2d22e" class="">파이썬에서 상속은 클래스 이름 바로 옆에 괄호를 열고 상속받을 클래스를 넣음으로써 쉽게 이루어진다. 메소드 오버라이딩 역시 같은 이름의 메소드를 선언하면 간단하게 된다.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1183b2cf-df3f-80b2-a7bb-f31b9931603d" class="code"><code class="language-Python">class Animal:
+    def __init__(self, name):
+        self.name = name
+    
+    def eat(self):
+        print(self.name, &quot;eats&quot;)
+
+class Dog(Animal): # Animal 클래스 상속받음
+    def __init__(self, name):
+        super().__init__(name) # 부모 클래스의 생성자 호출
+
+    def eat(self): # 메소드 오버라이딩
+        print(f&quot;A dog named {self.name} eats&quot;)
+    
+dog = Dog(&quot;요크셔테리어&quot;)
+dog.eat()
+
+# 결과
+A dog named 요크셔테리어 eats</code></pre><p id="1183b2cf-df3f-8053-90b6-d5f651d5199f" class="">
+</p><h2 id="1183b2cf-df3f-806e-8832-d17e97a23cee" class="">접근제한자</h2><p id="1183b2cf-df3f-805f-85cf-ec2babe2c90f" class="">파이썬에서 변수나 함수를 private으로 만들고 싶다면 이름 앞에 _을 2개 연속으로 붙이면 된다.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1183b2cf-df3f-805d-9389-f2b016035a2b" class="code"><code class="language-Python">class Animal:
+    def __init__(self, name):
+        self.__name = name
+    
+    def eat(self):
+        print(self.__name, &quot;eats&quot;)
+
+class Dog(Animal):
+    def __init__(self, name):
+        super().__init__(name)
+
+    def eat(self):
+        print(f&quot;A dog named {self.__name} eats&quot;)
+    
+dog = Dog(&quot;요크셔테리어&quot;)
+dog.eat()
+
+# 에러 발생!
+AttributeError: &#x27;Dog&#x27; object has no attribute &#x27;_Dog__name&#x27;</code></pre><p id="1183b2cf-df3f-8006-817b-e96472a09fea" class="">protected의 경우 _를 하나만 붙이면 된다. 하지만 파이썬이 지원하는 형식이 아니라 암묵적으로 약속된 컨벤션일 뿐이라서 private 처럼 에러가 발생한다던지 하는 강제성은 없다.</p><p id="1183b2cf-df3f-80f2-9950-e021a93f900e" class="">
+</p><p id="1183b2cf-df3f-80c3-b2c7-c87fe79000c0" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
