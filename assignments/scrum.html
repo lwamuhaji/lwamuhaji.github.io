@@ -1,1406 +1,691 @@
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Scrum</title>
-    <style>
-      /* cspell:disable-file */
-      /* webkit printing magic: print all background colors */
-      html {
-        -webkit-print-color-adjust: exact;
-      }
-      * {
-        box-sizing: border-box;
-        -webkit-print-color-adjust: exact;
-      }
-
-      html,
-      body {
-        margin: 0;
-        padding: 0;
-      }
-      @media only screen {
-        body {
-          margin: 2em auto;
-          max-width: 900px;
-          color: rgb(55, 53, 47);
-        }
-      }
-
-      body {
-        /* line-height: 1.5; */
-        white-space: pre-wrap;
-      }
-
-      a,
-      a.visited {
-        color: inherit;
-        text-decoration: underline;
-      }
-
-      .pdf-relative-link-path {
-        font-size: 80%;
-        color: #444;
-      }
-
-      h1,
-      h2,
-      h3 {
-        letter-spacing: -0.01em;
-        line-height: 1.2;
-        font-weight: 600;
-        margin-bottom: 0;
-      }
-
-      .page-title {
-        font-size: 2.5rem;
-        font-weight: 700;
-        margin-top: 0;
-        margin-bottom: 0.75em;
-      }
-
-      h1 {
-        font-size: 1.875rem;
-        margin-top: 1.875rem;
-      }
-
-      h2 {
-        font-size: 1.5rem;
-        margin-top: 1.5rem;
-      }
-
-      h3 {
-        font-size: 1.25rem;
-        margin-top: 1.25rem;
-      }
-
-      .source {
-        border: 1px solid #ddd;
-        border-radius: 3px;
-        padding: 1.5em;
-        word-break: break-all;
-      }
-
-      .callout {
-        border-radius: 3px;
-        padding: 1rem;
-      }
-
-      figure {
-        margin: 1.25em 0;
-        page-break-inside: avoid;
-      }
-
-      figcaption {
-        opacity: 0.5;
-        font-size: 85%;
-        margin-top: 0.5em;
-      }
-
-      mark {
-        background-color: transparent;
-      }
-
-      .indented {
-        padding-left: 1.5em;
-      }
-
-      hr {
-        background: transparent;
-        display: block;
-        width: 100%;
-        height: 1px;
-        visibility: visible;
-        border: none;
-        border-bottom: 1px solid rgba(55, 53, 47, 0.09);
-      }
-
-      img {
-        max-width: 100%;
-      }
-
-      @media only print {
-        img {
-          max-height: 100vh;
-          object-fit: contain;
-        }
-      }
-
-      @page {
-        margin: 1in;
-      }
-
-      .collection-content {
-        font-size: 0.875rem;
-      }
-
-      .column-list {
-        display: flex;
-        justify-content: space-between;
-      }
-
-      .column {
-        padding: 0 1em;
-      }
-
-      .column:first-child {
-        padding-left: 0;
-      }
-
-      .column:last-child {
-        padding-right: 0;
-      }
-
-      .table_of_contents-item {
-        display: block;
-        font-size: 0.875rem;
-        line-height: 1.3;
-        padding: 0.125rem;
-      }
-
-      .table_of_contents-indent-1 {
-        margin-left: 1.5rem;
-      }
-
-      .table_of_contents-indent-2 {
-        margin-left: 3rem;
-      }
-
-      .table_of_contents-indent-3 {
-        margin-left: 4.5rem;
-      }
-
-      .table_of_contents-link {
-        text-decoration: none;
-        opacity: 0.7;
-        border-bottom: 1px solid rgba(55, 53, 47, 0.18);
-      }
-
-      table,
-      th,
-      td {
-        border: 1px solid rgba(55, 53, 47, 0.09);
-        border-collapse: collapse;
-      }
-
-      table {
-        border-left: none;
-        border-right: none;
-      }
-
-      th,
-      td {
-        font-weight: normal;
-        padding: 0.25em 0.5em;
-        line-height: 1.5;
-        min-height: 1.5em;
-        text-align: left;
-      }
-
-      th {
-        color: rgba(55, 53, 47, 0.6);
-      }
-
-      ol,
-      ul {
-        margin: 0;
-        margin-block-start: 0.6em;
-        margin-block-end: 0.6em;
-      }
-
-      li > ol:first-child,
-      li > ul:first-child {
-        margin-block-start: 0.6em;
-      }
-
-      ul > li {
-        list-style: disc;
-      }
-
-      ul.to-do-list {
-        padding-inline-start: 0;
-      }
-
-      ul.to-do-list > li {
-        list-style: none;
-      }
-
-      .to-do-children-checked {
-        text-decoration: line-through;
-        opacity: 0.375;
-      }
-
-      ul.toggle > li {
-        list-style: none;
-      }
-
-      ul {
-        padding-inline-start: 1.7em;
-      }
-
-      ul > li {
-        padding-left: 0.1em;
-      }
-
-      ol {
-        padding-inline-start: 1.6em;
-      }
-
-      ol > li {
-        padding-left: 0.2em;
-      }
-
-      .mono ol {
-        padding-inline-start: 2em;
-      }
-
-      .mono ol > li {
-        text-indent: -0.4em;
-      }
-
-      .toggle {
-        padding-inline-start: 0em;
-        list-style-type: none;
-      }
-
-      /* Indent toggle children */
-      .toggle > li > details {
-        padding-left: 1.7em;
-      }
-
-      .toggle > li > details > summary {
-        margin-left: -1.1em;
-      }
-
-      .selected-value {
-        display: inline-block;
-        padding: 0 0.5em;
-        background: rgba(206, 205, 202, 0.5);
-        border-radius: 3px;
-        margin-right: 0.5em;
-        margin-top: 0.3em;
-        margin-bottom: 0.3em;
-        white-space: nowrap;
-      }
-
-      .collection-title {
-        display: inline-block;
-        margin-right: 1em;
-      }
-
-      .page-description {
-        margin-bottom: 2em;
-      }
-
-      .simple-table {
-        margin-top: 1em;
-        font-size: 0.875rem;
-        empty-cells: show;
-      }
-      .simple-table td {
-        height: 29px;
-        min-width: 120px;
-      }
-
-      .simple-table th {
-        height: 29px;
-        min-width: 120px;
-      }
-
-      .simple-table-header-color {
-        background: rgb(247, 246, 243);
-        color: black;
-      }
-      .simple-table-header {
-        font-weight: 500;
-      }
-
-      time {
-        opacity: 0.5;
-      }
-
-      .icon {
-        display: inline-block;
-        max-width: 1.2em;
-        max-height: 1.2em;
-        text-decoration: none;
-        vertical-align: text-bottom;
-        margin-right: 0.5em;
-      }
-
-      img.icon {
-        border-radius: 3px;
-      }
-
-      .user-icon {
-        width: 1.5em;
-        height: 1.5em;
-        border-radius: 100%;
-        margin-right: 0.5rem;
-      }
-
-      .user-icon-inner {
-        font-size: 0.8em;
-      }
-
-      .text-icon {
-        border: 1px solid #000;
-        text-align: center;
-      }
-
-      .page-cover-image {
-        display: block;
-        object-fit: cover;
-        width: 100%;
-        max-height: 30vh;
-      }
-
-      .page-header-icon {
-        font-size: 3rem;
-        margin-bottom: 1rem;
-      }
-
-      .page-header-icon-with-cover {
-        margin-top: -0.72em;
-        margin-left: 0.07em;
-      }
-
-      .page-header-icon img {
-        border-radius: 3px;
-      }
-
-      .link-to-page {
-        margin: 1em 0;
-        padding: 0;
-        border: none;
-        font-weight: 500;
-      }
-
-      p > .user {
-        opacity: 0.5;
-      }
-
-      td > .user,
-      td > time {
-        white-space: nowrap;
-      }
-
-      input[type="checkbox"] {
-        transform: scale(1.5);
-        margin-right: 0.6em;
-        vertical-align: middle;
-      }
-
-      p {
-        margin-top: 0.5em;
-        margin-bottom: 0.5em;
-      }
-
-      .image {
-        border: none;
-        margin: 1.5em 0;
-        padding: 0;
-        border-radius: 0;
-        text-align: center;
-      }
-
-      .code,
-      code {
-        background: rgba(135, 131, 120, 0.15);
-        border-radius: 3px;
-        padding: 0.2em 0.4em;
-        border-radius: 3px;
-        font-size: 85%;
-        tab-size: 2;
-      }
-
-      code {
-        color: #eb5757;
-      }
-
-      .code {
-        padding: 1.5em 1em;
-      }
-
-      .code-wrap {
-        white-space: pre-wrap;
-        word-break: break-all;
-      }
-
-      .code > code {
-        background: none;
-        padding: 0;
-        font-size: 100%;
-        color: inherit;
-      }
-
-      blockquote {
-        font-size: 1.25em;
-        margin: 1em 0;
-        padding-left: 1em;
-        border-left: 3px solid rgb(55, 53, 47);
-      }
-
-      .bookmark {
-        text-decoration: none;
-        max-height: 8em;
-        padding: 0;
-        display: flex;
-        width: 100%;
-        align-items: stretch;
-      }
-
-      .bookmark-title {
-        font-size: 0.85em;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        height: 1.75em;
-        white-space: nowrap;
-      }
-
-      .bookmark-text {
-        display: flex;
-        flex-direction: column;
-      }
-
-      .bookmark-info {
-        flex: 4 1 180px;
-        padding: 12px 14px 14px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-      }
-
-      .bookmark-image {
-        width: 33%;
-        flex: 1 1 180px;
-        display: block;
-        position: relative;
-        object-fit: cover;
-        border-radius: 1px;
-      }
-
-      .bookmark-description {
-        color: rgba(55, 53, 47, 0.6);
-        font-size: 0.75em;
-        overflow: hidden;
-        max-height: 4.5em;
-        word-break: break-word;
-      }
-
-      .bookmark-href {
-        font-size: 0.75em;
-        margin-top: 0.25em;
-      }
-
-      .sans {
-        font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont,
-          "Segoe UI Variable Display", "Segoe UI", Helvetica,
-          "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji",
-          "Segoe UI Symbol";
-      }
-      .code {
-        font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono",
-          "Liberation Mono", Courier, monospace;
-      }
-      .serif {
-        font-family: Lyon-Text, Georgia, ui-serif, serif;
-      }
-      .mono {
-        font-family: iawriter-mono, Nitti, Menlo, Courier, monospace;
-      }
-      .pdf .sans {
-        font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont,
-          "Segoe UI Variable Display", "Segoe UI", Helvetica,
-          "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji",
-          "Segoe UI Symbol", "Twemoji", "Noto Color Emoji", "Noto Sans CJK JP";
-      }
-      .pdf:lang(zh-CN) .sans {
-        font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont,
-          "Segoe UI Variable Display", "Segoe UI", Helvetica,
-          "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji",
-          "Segoe UI Symbol", "Twemoji", "Noto Color Emoji", "Noto Sans CJK SC";
-      }
-      .pdf:lang(zh-TW) .sans {
-        font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont,
-          "Segoe UI Variable Display", "Segoe UI", Helvetica,
-          "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji",
-          "Segoe UI Symbol", "Twemoji", "Noto Color Emoji", "Noto Sans CJK TC";
-      }
-      .pdf:lang(ko-KR) .sans {
-        font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont,
-          "Segoe UI Variable Display", "Segoe UI", Helvetica,
-          "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji",
-          "Segoe UI Symbol", "Twemoji", "Noto Color Emoji", "Noto Sans CJK KR";
-      }
-      .pdf .code {
-        font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas,
-          "PT Mono", "Liberation Mono", Courier, monospace, "Twemoji",
-          "Noto Color Emoji", "Noto Sans Mono CJK JP";
-      }
-      .pdf:lang(zh-CN) .code {
-        font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas,
-          "PT Mono", "Liberation Mono", Courier, monospace, "Twemoji",
-          "Noto Color Emoji", "Noto Sans Mono CJK SC";
-      }
-      .pdf:lang(zh-TW) .code {
-        font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas,
-          "PT Mono", "Liberation Mono", Courier, monospace, "Twemoji",
-          "Noto Color Emoji", "Noto Sans Mono CJK TC";
-      }
-      .pdf:lang(ko-KR) .code {
-        font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas,
-          "PT Mono", "Liberation Mono", Courier, monospace, "Twemoji",
-          "Noto Color Emoji", "Noto Sans Mono CJK KR";
-      }
-      .pdf .serif {
-        font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, "Twemoji",
-          "Noto Color Emoji", "Noto Serif CJK JP";
-      }
-      .pdf:lang(zh-CN) .serif {
-        font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, "Twemoji",
-          "Noto Color Emoji", "Noto Serif CJK SC";
-      }
-      .pdf:lang(zh-TW) .serif {
-        font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, "Twemoji",
-          "Noto Color Emoji", "Noto Serif CJK TC";
-      }
-      .pdf:lang(ko-KR) .serif {
-        font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, "Twemoji",
-          "Noto Color Emoji", "Noto Serif CJK KR";
-      }
-      .pdf .mono {
-        font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace,
-          "Twemoji", "Noto Color Emoji", "Noto Sans Mono CJK JP";
-      }
-      .pdf:lang(zh-CN) .mono {
-        font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace,
-          "Twemoji", "Noto Color Emoji", "Noto Sans Mono CJK SC";
-      }
-      .pdf:lang(zh-TW) .mono {
-        font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace,
-          "Twemoji", "Noto Color Emoji", "Noto Sans Mono CJK TC";
-      }
-      .pdf:lang(ko-KR) .mono {
-        font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace,
-          "Twemoji", "Noto Color Emoji", "Noto Sans Mono CJK KR";
-      }
-      .highlight-default {
-        color: rgba(55, 53, 47, 1);
-      }
-      .highlight-gray {
-        color: rgba(120, 119, 116, 1);
-        fill: rgba(120, 119, 116, 1);
-      }
-      .highlight-brown {
-        color: rgba(159, 107, 83, 1);
-        fill: rgba(159, 107, 83, 1);
-      }
-      .highlight-orange {
-        color: rgba(217, 115, 13, 1);
-        fill: rgba(217, 115, 13, 1);
-      }
-      .highlight-yellow {
-        color: rgba(203, 145, 47, 1);
-        fill: rgba(203, 145, 47, 1);
-      }
-      .highlight-teal {
-        color: rgba(68, 131, 97, 1);
-        fill: rgba(68, 131, 97, 1);
-      }
-      .highlight-blue {
-        color: rgba(51, 126, 169, 1);
-        fill: rgba(51, 126, 169, 1);
-      }
-      .highlight-purple {
-        color: rgba(144, 101, 176, 1);
-        fill: rgba(144, 101, 176, 1);
-      }
-      .highlight-pink {
-        color: rgba(193, 76, 138, 1);
-        fill: rgba(193, 76, 138, 1);
-      }
-      .highlight-red {
-        color: rgba(212, 76, 71, 1);
-        fill: rgba(212, 76, 71, 1);
-      }
-      .highlight-default_background {
-        color: rgba(55, 53, 47, 1);
-      }
-      .highlight-gray_background {
-        background: rgba(241, 241, 239, 1);
-      }
-      .highlight-brown_background {
-        background: rgba(244, 238, 238, 1);
-      }
-      .highlight-orange_background {
-        background: rgba(251, 236, 221, 1);
-      }
-      .highlight-yellow_background {
-        background: rgba(251, 243, 219, 1);
-      }
-      .highlight-teal_background {
-        background: rgba(237, 243, 236, 1);
-      }
-      .highlight-blue_background {
-        background: rgba(231, 243, 248, 1);
-      }
-      .highlight-purple_background {
-        background: rgba(244, 240, 247, 0.8);
-      }
-      .highlight-pink_background {
-        background: rgba(249, 238, 243, 0.8);
-      }
-      .highlight-red_background {
-        background: rgba(253, 235, 236, 1);
-      }
-      .block-color-default {
-        color: inherit;
-        fill: inherit;
-      }
-      .block-color-gray {
-        color: rgba(120, 119, 116, 1);
-        fill: rgba(120, 119, 116, 1);
-      }
-      .block-color-brown {
-        color: rgba(159, 107, 83, 1);
-        fill: rgba(159, 107, 83, 1);
-      }
-      .block-color-orange {
-        color: rgba(217, 115, 13, 1);
-        fill: rgba(217, 115, 13, 1);
-      }
-      .block-color-yellow {
-        color: rgba(203, 145, 47, 1);
-        fill: rgba(203, 145, 47, 1);
-      }
-      .block-color-teal {
-        color: rgba(68, 131, 97, 1);
-        fill: rgba(68, 131, 97, 1);
-      }
-      .block-color-blue {
-        color: rgba(51, 126, 169, 1);
-        fill: rgba(51, 126, 169, 1);
-      }
-      .block-color-purple {
-        color: rgba(144, 101, 176, 1);
-        fill: rgba(144, 101, 176, 1);
-      }
-      .block-color-pink {
-        color: rgba(193, 76, 138, 1);
-        fill: rgba(193, 76, 138, 1);
-      }
-      .block-color-red {
-        color: rgba(212, 76, 71, 1);
-        fill: rgba(212, 76, 71, 1);
-      }
-      .block-color-default_background {
-        color: inherit;
-        fill: inherit;
-      }
-      .block-color-gray_background {
-        background: rgba(241, 241, 239, 1);
-      }
-      .block-color-brown_background {
-        background: rgba(244, 238, 238, 1);
-      }
-      .block-color-orange_background {
-        background: rgba(251, 236, 221, 1);
-      }
-      .block-color-yellow_background {
-        background: rgba(251, 243, 219, 1);
-      }
-      .block-color-teal_background {
-        background: rgba(237, 243, 236, 1);
-      }
-      .block-color-blue_background {
-        background: rgba(231, 243, 248, 1);
-      }
-      .block-color-purple_background {
-        background: rgba(244, 240, 247, 0.8);
-      }
-      .block-color-pink_background {
-        background: rgba(249, 238, 243, 0.8);
-      }
-      .block-color-red_background {
-        background: rgba(253, 235, 236, 1);
-      }
-      .select-value-color-uiBlue {
-        background-color: rgba(35, 131, 226, 0.07);
-      }
-      .select-value-color-pink {
-        background-color: rgba(245, 224, 233, 1);
-      }
-      .select-value-color-purple {
-        background-color: rgba(232, 222, 238, 1);
-      }
-      .select-value-color-green {
-        background-color: rgba(219, 237, 219, 1);
-      }
-      .select-value-color-gray {
-        background-color: rgba(227, 226, 224, 1);
-      }
-      .select-value-color-transparentGray {
-        background-color: rgba(227, 226, 224, 0);
-      }
-      .select-value-color-translucentGray {
-        background-color: rgba(0, 0, 0, 0.06);
-      }
-      .select-value-color-orange {
-        background-color: rgba(250, 222, 201, 1);
-      }
-      .select-value-color-brown {
-        background-color: rgba(238, 224, 218, 1);
-      }
-      .select-value-color-red {
-        background-color: rgba(255, 226, 221, 1);
-      }
-      .select-value-color-yellow {
-        background-color: rgba(253, 236, 200, 1);
-      }
-      .select-value-color-blue {
-        background-color: rgba(211, 229, 239, 1);
-      }
-      .select-value-color-pageGlass {
-        background-color: undefined;
-      }
-      .select-value-color-washGlass {
-        background-color: undefined;
-      }
-
-      .checkbox {
-        display: inline-flex;
-        vertical-align: text-bottom;
-        width: 16;
-        height: 16;
-        background-size: 16px;
-        margin-left: 2px;
-        margin-right: 5px;
-      }
-
-      .checkbox-on {
-        background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
-      }
-
-      .checkbox-off {
-        background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
-      }
-    </style>
-  </head>
-  <body>
-    <article id="15c3b2cf-df3f-8006-8f2f-cb2411333107" class="page sans">
-      <header>
-        <h1 class="page-title">Scrum</h1>
-        <p class="page-description"></p>
-      </header>
-      <div class="page-body">
-        <blockquote id="15d3b2cf-df3f-8007-9760-f85ce7728490" class="">
-          목차
-        </blockquote>
-        <nav
-          id="15d3b2cf-df3f-806d-8ec1-e8961ef6b0a6"
-          class="block-color-gray table_of_contents"
-        >
-          <div class="table_of_contents-item table_of_contents-indent-0">
-            <a
-              class="table_of_contents-link"
-              href="#15c3b2cf-df3f-80cd-9dba-f4102a0474c2"
-              >1. Scrum &amp; Agile</a
-            >
-          </div>
-          <div class="table_of_contents-item table_of_contents-indent-0">
-            <a
-              class="table_of_contents-link"
-              href="#15d3b2cf-df3f-809b-a45d-c96cbca98e36"
-              >2. Scurm</a
-            >
-          </div>
-          <div class="table_of_contents-item table_of_contents-indent-1">
-            <a
-              class="table_of_contents-link"
-              href="#15c3b2cf-df3f-80b1-ba29-c8c72b616532"
-              >Scrum 구성원</a
-            >
-          </div>
-          <div class="table_of_contents-item table_of_contents-indent-1">
-            <a
-              class="table_of_contents-link"
-              href="#15d3b2cf-df3f-8027-9dd0-d8a9d08048df"
-              >Scrum Artifacts</a
-            >
-          </div>
-          <div class="table_of_contents-item table_of_contents-indent-1">
-            <a
-              class="table_of_contents-link"
-              href="#15c3b2cf-df3f-805b-83da-e03e3899dad6"
-              ><strong>Scrum의 단계</strong></a
-            >
-          </div>
-        </nav>
-        <p id="15d3b2cf-df3f-80e3-9eb7-df997af81d41" class=""></p>
-        <h1 id="15c3b2cf-df3f-80cd-9dba-f4102a0474c2" class="">
-          1. Scrum &amp; Agile
-        </h1>
-        <p id="15c3b2cf-df3f-80c6-aca8-febc0f9384b4" class="">
-          Agile: Plan-driven이 아닌, 변화를 빠르게 반영하는 방식
-        </p>
-        <p id="15d3b2cf-df3f-8070-a71f-eca23b562ff3" class=""></p>
-        <blockquote id="15c3b2cf-df3f-8072-971d-da4535319768" class="">
-          Agile Manifesto
-        </blockquote>
-        <ul id="15c3b2cf-df3f-807a-959b-dd38390dafc4" class="bulleted-list">
-          <li style="list-style-type: disc">
-            개인 간 상호작용 &gt; 프로세스, 툴
-          </li>
-        </ul>
-        <ul id="15c3b2cf-df3f-8028-ae86-f88eb9d857ea" class="bulleted-list">
-          <li style="list-style-type: disc">작동하는 소프트웨어 &gt; 문서</li>
-        </ul>
-        <ul id="15c3b2cf-df3f-809a-9413-cf52a93468ed" class="bulleted-list">
-          <li style="list-style-type: disc">고객과의 협력 &gt; 계약 협상</li>
-        </ul>
-        <ul id="15c3b2cf-df3f-806f-a774-fa6b5c98df4b" class="bulleted-list">
-          <li style="list-style-type: disc">변화에 적응 &gt; 계획</li>
-        </ul>
-        <p id="15c3b2cf-df3f-80dc-be04-f9aad8f2e670" class=""></p>
-        <p id="15c3b2cf-df3f-806a-b780-cf6776577882" class="">
-          스크럼은 애자일 개발 방식 중 하나
-        </p>
-        <ul id="15c3b2cf-df3f-80e7-8a0e-c492d4e91361" class="bulleted-list">
-          <li style="list-style-type: disc">
-            작은 목표를 짧은 주기로 개발하는 걸 반복해 점진적으로 개발
-          </li>
-        </ul>
-        <ul id="15c3b2cf-df3f-806f-ad46-e75f2900eef9" class="bulleted-list">
-          <li style="list-style-type: disc">높은 생산성</li>
-        </ul>
-        <ul id="15c3b2cf-df3f-80ee-a1fd-ce188e0705e4" class="bulleted-list">
-          <li style="list-style-type: disc">빠른 성과</li>
-        </ul>
-        <p id="15d3b2cf-df3f-803a-8900-d5ddc53483ca" class=""></p>
-        <blockquote id="15c3b2cf-df3f-800a-9258-c420cf95f98d" class="">
-          Scrum Framework Overview
-        </blockquote>
-        <figure id="15c3b2cf-df3f-80ef-9e21-fd84db434f3d" class="image">
-          <a href="image.png"
-            ><img style="width: 707.984375px" src="image.png"
-          /></a>
-        </figure>
-        <p id="15d3b2cf-df3f-80ee-a707-d811f4b59f1a" class=""></p>
-        <h1 id="15d3b2cf-df3f-809b-a45d-c96cbca98e36" class="">2. Scurm</h1>
-        <h2 id="15c3b2cf-df3f-80b1-ba29-c8c72b616532" class="">Scrum 구성원</h2>
-        <ol
-          type="1"
-          id="15c3b2cf-df3f-8052-9849-c1abfd6e4aa5"
-          class="numbered-list"
-          start="1"
-        >
-          <li><strong>프로덕트 오너 (Product Owner)</strong></li>
-        </ol>
-        <ul id="15c3b2cf-df3f-8012-b3fe-dc90ae439967" class="bulleted-list">
-          <li style="list-style-type: disc">
-            <strong>역할</strong>:
-            <ul id="15c3b2cf-df3f-804c-9fa1-c5e3389e03cc" class="bulleted-list">
-              <li style="list-style-type: circle">
-                제품의 기능, 방향성, 상업성을 책임짐
-              </li>
-            </ul>
-            <ul id="15c3b2cf-df3f-8097-8b91-eedf5dc94731" class="bulleted-list">
-              <li style="list-style-type: circle">
-                stakeholders와 협력하고 시장을 고려하여 우선순위 설정
-              </li>
-            </ul>
-            <ul id="15d3b2cf-df3f-808a-ba7c-ebf5293195b8" class="bulleted-list">
-              <li style="list-style-type: circle">결과물에 대한 최종 확인</li>
-            </ul>
-          </li>
-        </ul>
-        <hr id="15c3b2cf-df3f-80c3-8888-e4348364e574" />
-        <ol
-          type="1"
-          id="15c3b2cf-df3f-80a0-a4c2-e89293210a22"
-          class="numbered-list"
-          start="2"
-        >
-          <li><strong>스크럼 마스터 (Scrum Master)</strong></li>
-        </ol>
-        <ul id="15c3b2cf-df3f-80e2-9613-c5d805cfc576" class="bulleted-list">
-          <li style="list-style-type: disc">
-            <strong>역할</strong>:
-            <ul id="15c3b2cf-df3f-809b-8e22-d3e9a269fd1b" class="bulleted-list">
-              <li style="list-style-type: circle">
-                팀이 Scrum 원칙을 따르도록 관리
-              </li>
-            </ul>
-            <ul id="15c3b2cf-df3f-8041-9dd8-d39b3de70c4f" class="bulleted-list">
-              <li style="list-style-type: circle">
-                팀과 조직 간의 협력을 이끌어냄
-              </li>
-            </ul>
-            <ul id="15d3b2cf-df3f-8044-834b-fea34dd9873d" class="bulleted-list">
-              <li style="list-style-type: circle">
-                장애물을 제거하고 외부 변수로부터 팀을 보호
-              </li>
-            </ul>
-          </li>
-        </ul>
-        <hr id="15c3b2cf-df3f-803f-9d97-de70038f414e" />
-        <ol
-          type="1"
-          id="15c3b2cf-df3f-80bf-a7aa-dbe8af83db60"
-          class="numbered-list"
-          start="3"
-        >
-          <li><strong>개발 팀 (Development Team)</strong></li>
-        </ol>
-        <ul id="15c3b2cf-df3f-808e-aaa8-c3894f6333cb" class="bulleted-list">
-          <li style="list-style-type: disc">
-            <strong>역할</strong>:
-            <ul id="15c3b2cf-df3f-80ec-a096-ec0c83c183c5" class="bulleted-list">
-              <li style="list-style-type: circle">제품의 기능을 개발</li>
-            </ul>
-            <ul id="15c3b2cf-df3f-8053-aa41-daeb9fb5f804" class="bulleted-list">
-              <li style="list-style-type: circle">
-                테스트, 설계, 문서화 등 모든 개발 활동 수행
-              </li>
-            </ul>
-            <ul id="15d3b2cf-df3f-80f8-addb-e510654d6b0d" class="bulleted-list">
-              <li style="list-style-type: circle">
-                full-time 근무 및 sprint 하나를 책임져야 함 (이직 X)
-              </li>
-            </ul>
-          </li>
-        </ul>
-        <p id="15d3b2cf-df3f-80ee-98eb-ddb8e9d87e77" class=""></p>
-        <h2 id="15d3b2cf-df3f-8027-9dd0-d8a9d08048df" class="">
-          Scrum Artifacts
-        </h2>
-        <ol
-          type="1"
-          id="15d3b2cf-df3f-803b-99af-ec755f5618e3"
-          class="numbered-list"
-          start="1"
-        >
-          <li>
-            User Story
-            <ul id="15d3b2cf-df3f-8016-96df-c267acd954bf" class="bulleted-list">
-              <li style="list-style-type: disc">
-                유저 관점의 요구사항: Sprint의 주제가 됨 (sprint backlog)
-              </li>
-            </ul>
-            <ul id="15d3b2cf-df3f-8041-ad00-f4f039a3a0d4" class="bulleted-list">
-              <li style="list-style-type: disc">
-                Format: As a &lt;role&gt; I would like to be able to
-                &lt;action&gt; to achieve &lt;business value&gt;
-              </li>
-            </ul>
-            <ul id="15d3b2cf-df3f-80b6-8e69-e22e260fdce8" class="bulleted-list">
-              <li style="list-style-type: disc">
-                5W1H 원칙: who where when what why, how
-              </li>
-            </ul>
-            <p id="15d3b2cf-df3f-8037-ace5-cc1a629ab82f" class=""></p>
-          </li>
-        </ol>
-        <ol
-          type="1"
-          id="15d3b2cf-df3f-80be-a692-d396425d6b90"
-          class="numbered-list"
-          start="2"
-        >
-          <li>
-            Product Backlog
-            <ul id="15d3b2cf-df3f-805d-aaf8-df6ef09efb35" class="bulleted-list">
-              <li style="list-style-type: disc">
-                제품 개발을 위한 <strong>모든 요구사항</strong>의 리스트.
-              </li>
-            </ul>
-            <ul id="15d3b2cf-df3f-802b-b76e-c3e42fdc0448" class="bulleted-list">
-              <li style="list-style-type: disc">
-                특징:
-                <ul
-                  id="15d3b2cf-df3f-8031-8118-c7c7b4f9e221"
-                  class="bulleted-list"
-                >
-                  <li style="list-style-type: circle">
-                    우선순위에 따라 정렬된다.
-                  </li>
-                </ul>
-                <ul
-                  id="15d3b2cf-df3f-8086-9952-cb94bd34f9bb"
-                  class="bulleted-list"
-                >
-                  <li style="list-style-type: circle">
-                    Product Owner가 주로 관리하며, 지속적으로 업데이트 된다.
-                  </li>
-                </ul>
-                <ul
-                  id="15d3b2cf-df3f-80fe-9fbd-e2358425f2af"
-                  class="bulleted-list"
-                >
-                  <li style="list-style-type: circle">
-                    각 항목은 <strong>사용자 스토리(User Story)</strong>, 버그
-                    수정, 리펙토링 작업 등이 포함된다.
-                  </li>
-                </ul>
-              </li>
-            </ul>
-            <p id="15d3b2cf-df3f-80c7-85ee-f3228daf30d9" class=""></p>
-          </li>
-        </ol>
-        <ol
-          type="1"
-          id="15d3b2cf-df3f-80da-9d2b-d91acdd4845b"
-          class="numbered-list"
-          start="3"
-        >
-          <li>
-            Sprint Backlog
-            <ul id="15d3b2cf-df3f-8085-b719-f328596a21fe" class="bulleted-list">
-              <li style="list-style-type: disc">
-                하나의 Sprint 기간 동안 팀이 완료할 작업 항목
-              </li>
-            </ul>
-            <ul id="15d3b2cf-df3f-80f6-8b9b-de2b531ea12d" class="bulleted-list">
-              <li style="list-style-type: disc">
-                특징:
-                <ul
-                  id="15d3b2cf-df3f-80a3-bd4d-c38a5c733fe2"
-                  class="bulleted-list"
-                >
-                  <li style="list-style-type: circle">
-                    <strong>Product Backlog</strong>에서 선택된 항목과 이를
-                    구현하기 위한 구체적인 작업(Task)으로 구성
-                  </li>
-                </ul>
-                <ul
-                  id="15d3b2cf-df3f-80b9-932d-ecd1a6d3bf33"
-                  class="bulleted-list"
-                >
-                  <li style="list-style-type: circle">
-                    <strong>Development Team</strong>이 주로 관리하며, 매일
-                    업데이트된다.
-                  </li>
-                </ul>
-              </li>
-            </ul>
-            <figure id="15d3b2cf-df3f-80c5-8770-f49e57e89e0e" class="image">
-              <a href="image%201.png"
-                ><img style="width: 679.96875px" src="image%201.png"
-              /></a>
-            </figure>
-            <p id="15d3b2cf-df3f-80d1-91cf-e4286a925732" class=""></p>
-          </li>
-        </ol>
-        <ol
-          type="1"
-          id="15d3b2cf-df3f-80e8-b261-e00331aafb15"
-          class="numbered-list"
-          start="4"
-        >
-          <li>
-            Burndown Charts (소멸 차트)
-            <ul id="15d3b2cf-df3f-80c2-adda-cfc688ffb285" class="bulleted-list">
-              <li style="list-style-type: disc">
-                남아 있는 작업량을 시각적으로 표시한 그래프.
-              </li>
-            </ul>
-            <ul id="15d3b2cf-df3f-802a-a103-d36f5f036868" class="bulleted-list">
-              <li style="list-style-type: disc">
-                특징:
-                <ul
-                  id="15d3b2cf-df3f-80ed-b2b5-e812c0efdc1c"
-                  class="bulleted-list"
-                >
-                  <li style="list-style-type: circle">
-                    X축: 시간 (Sprint 기간)
-                  </li>
-                </ul>
-                <ul
-                  id="15d3b2cf-df3f-8029-96ee-e6bb7ac06d4b"
-                  class="bulleted-list"
-                >
-                  <li style="list-style-type: circle">
-                    Y축: 남은 작업량 (Story Points, 작업 시간 등)
-                  </li>
-                </ul>
-              </li>
-            </ul>
-            <ul id="15d3b2cf-df3f-8002-8751-f78b80b7ae02" class="bulleted-list">
-              <li style="list-style-type: disc">
-                목적:
-                <ul
-                  id="15d3b2cf-df3f-80f7-a6e1-e3e8912a369b"
-                  class="bulleted-list"
-                >
-                  <li style="list-style-type: circle">
-                    팀이 작업 완료 속도를 파악하고, Sprint 목표 달성 가능성을
-                    확인
-                  </li>
-                </ul>
-                <ul
-                  id="15d3b2cf-df3f-80cf-82b2-d389a5520d37"
-                  class="bulleted-list"
-                >
-                  <li style="list-style-type: circle">
-                    작업 지연이나 리스크를 조기에 식별
-                  </li>
-                </ul>
-              </li>
-            </ul>
-            <figure id="15d3b2cf-df3f-800c-8577-c867ef7cfbb1" class="image">
-              <a href="image%202.png"
-                ><img style="width: 377px" src="image%202.png"
-              /></a>
-            </figure>
-          </li>
-        </ol>
-        <p id="15d3b2cf-df3f-8016-9e94-ecca82fdc507" class=""></p>
-        <h2 id="15c3b2cf-df3f-805b-83da-e03e3899dad6" class="">
-          <strong>Scrum의 단계</strong>
-        </h2>
-        <ol
-          type="1"
-          id="15d3b2cf-df3f-8003-8d20-e18fbed77f87"
-          class="numbered-list"
-          start="1"
-        >
-          <li>
-            <strong>Sprint Planning (스프린트 계획 회의)</strong>
-            <ul id="15d3b2cf-df3f-8067-9a94-e891a678f2ae" class="bulleted-list">
-              <li style="list-style-type: disc">
-                목표: 다가오는 <strong>스프린트(Sprint)</strong> 동안 수행할
-                작업을 계획하는 것.
-              </li>
-            </ul>
-            <ul id="15d3b2cf-df3f-800f-9746-c1935b87a2e3" class="bulleted-list">
-              <li style="list-style-type: disc">
-                참여자:
-                <strong>Product Owner, Scrum Master, Development Team</strong>
-              </li>
-            </ul>
-            <ul id="15d3b2cf-df3f-801b-992e-dbadb9616e66" class="bulleted-list">
-              <li style="list-style-type: disc">
-                주요 활동:
-                <ul
-                  id="15d3b2cf-df3f-80f2-888a-eae1138d4083"
-                  class="bulleted-list"
-                >
-                  <li style="list-style-type: circle">
-                    각 이해관계자들이 우선순위를 정해 이번 Sprint에서 개발할
-                    user story를 선정
-                  </li>
-                </ul>
-                <ul
-                  id="15d3b2cf-df3f-804f-ae1d-f1169b0ae5cd"
-                  class="bulleted-list"
-                >
-                  <li style="list-style-type: circle">
-                    <strong>Development Team</strong>은 목표를 달성하기 위해
-                    필요한 작업을 분석하고 task 단위로 나눔
-                  </li>
-                </ul>
-                <ul
-                  id="15d3b2cf-df3f-80bf-b8a0-c2a2d9c4dd86"
-                  class="bulleted-list"
-                >
-                  <li style="list-style-type: circle">
-                    제약 사항 및 Acceptance criteria(승인 조건) 설정
-                  </li>
-                </ul>
-                <ul
-                  id="15d3b2cf-df3f-8067-89ee-fd6fd7fd35dd"
-                  class="bulleted-list"
-                >
-                  <li style="list-style-type: circle">
-                    각 task의 소요 시간을 정함
-                  </li>
-                </ul>
-              </li>
-            </ul>
-            <figure id="15d3b2cf-df3f-80d6-bef3-cab523d0b399" class="image">
-              <a href="image%203.png"
-                ><img style="width: 707.96875px" src="image%203.png"
-              /></a>
-            </figure>
-          </li>
-        </ol>
-        <p id="15d3b2cf-df3f-808a-8a78-ee460165e2de" class=""></p>
-        <ol
-          type="1"
-          id="15d3b2cf-df3f-8024-b4c4-ec41d8be304e"
-          class="numbered-list"
-          start="2"
-        >
-          <li>
-            <strong>Daily Scrum Meeting (일일 스크럼 미팅)</strong>
-            <ul id="15d3b2cf-df3f-8087-ae05-dcaefac1de5c" class="bulleted-list">
-              <li style="list-style-type: disc">
-                목표: 팀 간의 의사소통을 통해 작업 진행 상황을 공유하고 장애물을
-                해결
-              </li>
-            </ul>
-            <ul id="15d3b2cf-df3f-8099-a041-d944d4de9a8e" class="bulleted-list">
-              <li style="list-style-type: disc">
-                참여자: 일반적으로 Product Owner를 제외한 Scrum 팀 전체
-              </li>
-            </ul>
-            <ul id="15d3b2cf-df3f-8089-9023-dd35e758b972" class="bulleted-list">
-              <li style="list-style-type: disc">시간: 15분 내외의 짧은 회의</li>
-            </ul>
-            <ul id="15d3b2cf-df3f-807b-a16b-faf48658b589" class="bulleted-list">
-              <li style="list-style-type: disc">
-                주요 내용: 각 팀원이 다음 세 가지 질문에 답변.
-                <ul
-                  id="15d3b2cf-df3f-80be-a11f-c9043333d9ec"
-                  class="bulleted-list"
-                >
-                  <li style="list-style-type: circle">
-                    어제 한 작업과 오늘 할 작업
-                  </li>
-                </ul>
-                <ul
-                  id="15d3b2cf-df3f-809f-a24d-f8159027ad35"
-                  class="bulleted-list"
-                >
-                  <li style="list-style-type: circle">
-                    공유해야 할 이슈가 있는지
-                  </li>
-                </ul>
-                <ul
-                  id="15d3b2cf-df3f-80f7-86ea-d0518e77a4e3"
-                  class="bulleted-list"
-                >
-                  <li style="list-style-type: circle">
-                    다른 팀원과의 협력이 필요한 사항
-                  </li>
-                </ul>
-              </li>
-            </ul>
-            <ul id="15d3b2cf-df3f-80d8-978d-e4fef6cbafe7" class="bulleted-list">
-              <li style="list-style-type: disc">
-                이 회의는 문제 해결이 아닌 상황 공유에 초점
-              </li>
-            </ul>
-          </li>
-        </ol>
-        <p id="15d3b2cf-df3f-8093-a36c-d0a6bd302ac6" class=""></p>
-        <ol
-          type="1"
-          id="15d3b2cf-df3f-80e9-9fb1-de27852acabb"
-          class="numbered-list"
-          start="3"
-        >
-          <li>
-            <strong>Sprint Review (스프린트 리뷰)</strong>
-            <ul id="15d3b2cf-df3f-803d-90ba-c9fe5cee4b2d" class="bulleted-list">
-              <li style="list-style-type: disc">
-                목표: Sprint 기간 동안 완성된 작업물을 점검하고 사용자에게
-                피드백을 받는 것
-              </li>
-            </ul>
-            <ul id="15d3b2cf-df3f-80a2-a9b8-d876ce70108a" class="bulleted-list">
-              <li style="list-style-type: disc">
-                참여자: Scrum 팀, 이해관계자(Stakeholders)
-              </li>
-            </ul>
-            <ul id="15d3b2cf-df3f-80ee-b09b-f4da5214d431" class="bulleted-list">
-              <li style="list-style-type: disc">시간: 2시간 이내</li>
-            </ul>
-            <ul id="15d3b2cf-df3f-8075-840c-f701a7290a95" class="bulleted-list">
-              <li style="list-style-type: disc">
-                주요 활동:
-                <ul
-                  id="15d3b2cf-df3f-80c5-9cc0-fa0f8b0fa1a1"
-                  class="bulleted-list"
-                >
-                  <li style="list-style-type: circle">
-                    팀은 완성된 작업물(또는 기능)을 시연
-                  </li>
-                </ul>
-                <ul
-                  id="15d3b2cf-df3f-8093-9efd-ec5456b3319d"
-                  class="bulleted-list"
-                >
-                  <li style="list-style-type: circle">
-                    이해관계자로부터 피드백 수집
-                  </li>
-                </ul>
-                <ul
-                  id="15d3b2cf-df3f-80d4-8cb8-dca5d3003be6"
-                  class="bulleted-list"
-                >
-                  <li style="list-style-type: circle">
-                    제품의 미래 방향성 및 변경 사항 논의
-                  </li>
-                </ul>
-              </li>
-            </ul>
-            <ul id="15d3b2cf-df3f-8074-997b-f6b61f70c2b0" class="bulleted-list">
-              <li style="list-style-type: disc">
-                결과: Product Backlog가 업데이트되고, 차기 Sprint에 반영할 변경
-                사항 제안
-              </li>
-            </ul>
-          </li>
-        </ol>
-        <p id="15d3b2cf-df3f-80cb-8df0-e5a04fed9bfd" class=""></p>
-        <ol
-          type="1"
-          id="15d3b2cf-df3f-80e4-96ac-d22df1120d96"
-          class="numbered-list"
-          start="4"
-        >
-          <li>
-            <strong>Sprint Retrospective (스프린트 회고)</strong>
-            <ul id="15d3b2cf-df3f-8006-bc73-deb2555e190c" class="bulleted-list">
-              <li style="list-style-type: disc">
-                목표: 스프린트의 과정을 돌아보고 평가하여, 스크럼 프로세스를
-                개선하기 위한 구체적인 방안을 마련한다.
-              </li>
-            </ul>
-            <ul id="15d3b2cf-df3f-800c-9637-c8e2596753f1" class="bulleted-list">
-              <li style="list-style-type: disc">
-                참여자: Scrum 팀, 이해관계자(Stakeholders)
-              </li>
-            </ul>
-            <ul id="15d3b2cf-df3f-8089-9805-cc0fcec5e792" class="bulleted-list">
-              <li style="list-style-type: disc">시간: 15-30분</li>
-            </ul>
-            <ul id="15d3b2cf-df3f-8077-b06f-cd3bb4588186" class="bulleted-list">
-              <li style="list-style-type: disc">
-                주요 활동:
-                <ul
-                  id="15d3b2cf-df3f-807a-b264-f8f267da852a"
-                  class="bulleted-list"
-                >
-                  <li style="list-style-type: circle">무엇이 잘 되었는가?</li>
-                </ul>
-                <ul
-                  id="15d3b2cf-df3f-809c-8eeb-d4a323cdaeb6"
-                  class="bulleted-list"
-                >
-                  <li style="list-style-type: circle">
-                    무엇이 개선되어야 하는가?
-                  </li>
-                </ul>
-                <ul
-                  id="15d3b2cf-df3f-80eb-8ef5-e92c29735e02"
-                  class="bulleted-list"
-                >
-                  <li style="list-style-type: circle">
-                    다음 스프린트에 실천할 수 있는 개선 방안은 무엇인가?
-                  </li>
-                </ul>
-              </li>
-            </ul>
-            <ul id="15d3b2cf-df3f-80e6-bd1a-d99fbd1bed78" class="bulleted-list">
-              <li style="list-style-type: disc">결과: 스크럼 프로세스 개선</li>
-            </ul>
-          </li>
-        </ol>
-        <p id="15d3b2cf-df3f-8025-aa45-f0bf2314c7aa" class=""></p>
-      </div>
-    </article>
-    <span class="sans" style="font-size: 14px; padding-top: 2em"></span>
-  </body>
-</html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Scrum</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="15c3b2cf-df3f-8006-8f2f-cb2411333107" class="page sans"><header><h1 class="page-title">Scrum</h1><p class="page-description"></p></header><div class="page-body"><blockquote id="15d3b2cf-df3f-8007-9760-f85ce7728490" class="">목차</blockquote><nav id="15d3b2cf-df3f-806d-8ec1-e8961ef6b0a6" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#15c3b2cf-df3f-80cd-9dba-f4102a0474c2">1. Scrum &amp; Agile</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#15d3b2cf-df3f-809b-a45d-c96cbca98e36">2. Scurm</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#15c3b2cf-df3f-80b1-ba29-c8c72b616532">Scrum 구성원</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#15d3b2cf-df3f-8027-9dd0-d8a9d08048df">Scrum Artifacts</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#15c3b2cf-df3f-805b-83da-e03e3899dad6"><strong>Scrum의 단계</strong></a></div></nav><p id="15d3b2cf-df3f-80e3-9eb7-df997af81d41" class="">
+</p><h1 id="15c3b2cf-df3f-80cd-9dba-f4102a0474c2" class="">1. Scrum &amp; Agile</h1><p id="15c3b2cf-df3f-80c6-aca8-febc0f9384b4" class="">Agile: Plan-driven이 아닌, 변화를 빠르게 반영하는 방식</p><p id="15d3b2cf-df3f-8070-a71f-eca23b562ff3" class="">
+</p><blockquote id="15c3b2cf-df3f-8072-971d-da4535319768" class="">Agile Manifesto</blockquote><ul id="15c3b2cf-df3f-807a-959b-dd38390dafc4" class="bulleted-list"><li style="list-style-type:disc">개인 간 상호작용 &gt; 프로세스, 툴</li></ul><ul id="15c3b2cf-df3f-8028-ae86-f88eb9d857ea" class="bulleted-list"><li style="list-style-type:disc">작동하는 소프트웨어 &gt; 문서</li></ul><ul id="15c3b2cf-df3f-809a-9413-cf52a93468ed" class="bulleted-list"><li style="list-style-type:disc">고객과의 협력 &gt; 계약 협상</li></ul><ul id="15c3b2cf-df3f-806f-a774-fa6b5c98df4b" class="bulleted-list"><li style="list-style-type:disc">변화에 적응 &gt; 계획</li></ul><p id="15c3b2cf-df3f-80dc-be04-f9aad8f2e670" class="">
+</p><p id="15c3b2cf-df3f-806a-b780-cf6776577882" class="">스크럼은 애자일 개발 방식 중 하나</p><ul id="15c3b2cf-df3f-80e7-8a0e-c492d4e91361" class="bulleted-list"><li style="list-style-type:disc">작은 목표를 짧은 주기로 개발하는 걸 반복해 점진적으로 개발</li></ul><ul id="15c3b2cf-df3f-806f-ad46-e75f2900eef9" class="bulleted-list"><li style="list-style-type:disc">높은 생산성</li></ul><ul id="15c3b2cf-df3f-80ee-a1fd-ce188e0705e4" class="bulleted-list"><li style="list-style-type:disc">빠른 성과</li></ul><p id="15d3b2cf-df3f-803a-8900-d5ddc53483ca" class="">
+</p><blockquote id="15c3b2cf-df3f-800a-9258-c420cf95f98d" class="">Scrum Framework Overview</blockquote><figure id="15c3b2cf-df3f-80ef-9e21-fd84db434f3d" class="image"><a href="/assignments/scrum/image.png"><img style="width:707.984375px" src="/assignments/scrum/image.png"/></a></figure><p id="15d3b2cf-df3f-80ee-a707-d811f4b59f1a" class="">
+</p><h1 id="15d3b2cf-df3f-809b-a45d-c96cbca98e36" class="">2. Scurm</h1><h2 id="15c3b2cf-df3f-80b1-ba29-c8c72b616532" class="">Scrum 구성원</h2><ol type="1" id="15c3b2cf-df3f-8052-9849-c1abfd6e4aa5" class="numbered-list" start="1"><li><strong>프로덕트 오너 (Product Owner)</strong></li></ol><ul id="15c3b2cf-df3f-8012-b3fe-dc90ae439967" class="bulleted-list"><li style="list-style-type:disc"><strong>역할</strong>:<ul id="15c3b2cf-df3f-804c-9fa1-c5e3389e03cc" class="bulleted-list"><li style="list-style-type:circle">제품의 기능, 방향성, 상업성을 책임짐</li></ul><ul id="15c3b2cf-df3f-8097-8b91-eedf5dc94731" class="bulleted-list"><li style="list-style-type:circle">stakeholders와 협력하고 시장을 고려하여 우선순위 설정</li></ul><ul id="15d3b2cf-df3f-808a-ba7c-ebf5293195b8" class="bulleted-list"><li style="list-style-type:circle">결과물에 대한 최종 확인</li></ul></li></ul><hr id="15c3b2cf-df3f-80c3-8888-e4348364e574"/><ol type="1" id="15c3b2cf-df3f-80a0-a4c2-e89293210a22" class="numbered-list" start="2"><li><strong>스크럼 마스터 (Scrum Master)</strong></li></ol><ul id="15c3b2cf-df3f-80e2-9613-c5d805cfc576" class="bulleted-list"><li style="list-style-type:disc"><strong>역할</strong>:<ul id="15c3b2cf-df3f-809b-8e22-d3e9a269fd1b" class="bulleted-list"><li style="list-style-type:circle">팀이 Scrum 원칙을 따르도록 관리</li></ul><ul id="15c3b2cf-df3f-8041-9dd8-d39b3de70c4f" class="bulleted-list"><li style="list-style-type:circle">팀과 조직 간의 협력을 이끌어냄</li></ul><ul id="15d3b2cf-df3f-8044-834b-fea34dd9873d" class="bulleted-list"><li style="list-style-type:circle">장애물을 제거하고 외부 변수로부터 팀을 보호</li></ul></li></ul><hr id="15c3b2cf-df3f-803f-9d97-de70038f414e"/><ol type="1" id="15c3b2cf-df3f-80bf-a7aa-dbe8af83db60" class="numbered-list" start="3"><li><strong>개발 팀 (Development Team)</strong></li></ol><ul id="15c3b2cf-df3f-808e-aaa8-c3894f6333cb" class="bulleted-list"><li style="list-style-type:disc"><strong>역할</strong>:<ul id="15c3b2cf-df3f-80ec-a096-ec0c83c183c5" class="bulleted-list"><li style="list-style-type:circle">제품의 기능을 개발</li></ul><ul id="15c3b2cf-df3f-8053-aa41-daeb9fb5f804" class="bulleted-list"><li style="list-style-type:circle">테스트, 설계, 문서화 등 모든 개발 활동 수행</li></ul><ul id="15d3b2cf-df3f-80f8-addb-e510654d6b0d" class="bulleted-list"><li style="list-style-type:circle">full-time 근무 및 sprint 하나를 책임져야 함 (이직 X)</li></ul></li></ul><p id="15d3b2cf-df3f-80ee-98eb-ddb8e9d87e77" class="">
+</p><h2 id="15d3b2cf-df3f-8027-9dd0-d8a9d08048df" class="">Scrum Artifacts</h2><ol type="1" id="15d3b2cf-df3f-803b-99af-ec755f5618e3" class="numbered-list" start="1"><li>User Story<ul id="15d3b2cf-df3f-8016-96df-c267acd954bf" class="bulleted-list"><li style="list-style-type:disc">유저 관점의 요구사항: Sprint의 주제가 됨 (sprint backlog)</li></ul><ul id="15d3b2cf-df3f-8041-ad00-f4f039a3a0d4" class="bulleted-list"><li style="list-style-type:disc">Format: As a &lt;role&gt; I would like to be able to &lt;action&gt; to achieve &lt;business value&gt;</li></ul><ul id="15d3b2cf-df3f-80b6-8e69-e22e260fdce8" class="bulleted-list"><li style="list-style-type:disc">5W1H 원칙: who where when what why, how</li></ul><p id="15d3b2cf-df3f-8037-ace5-cc1a629ab82f" class="">
+</p></li></ol><ol type="1" id="15d3b2cf-df3f-80be-a692-d396425d6b90" class="numbered-list" start="2"><li>Product Backlog<ul id="15d3b2cf-df3f-805d-aaf8-df6ef09efb35" class="bulleted-list"><li style="list-style-type:disc">제품 개발을 위한 <strong>모든 요구사항</strong>의 리스트.</li></ul><ul id="15d3b2cf-df3f-802b-b76e-c3e42fdc0448" class="bulleted-list"><li style="list-style-type:disc">특징:<ul id="15d3b2cf-df3f-8031-8118-c7c7b4f9e221" class="bulleted-list"><li style="list-style-type:circle">우선순위에 따라 정렬된다.</li></ul><ul id="15d3b2cf-df3f-8086-9952-cb94bd34f9bb" class="bulleted-list"><li style="list-style-type:circle">Product Owner가 주로 관리하며, 지속적으로 업데이트 된다.</li></ul><ul id="15d3b2cf-df3f-80fe-9fbd-e2358425f2af" class="bulleted-list"><li style="list-style-type:circle">각 항목은 <strong>사용자 스토리(User Story)</strong>, 버그 수정, 리펙토링 작업 등이 포함된다.</li></ul></li></ul><p id="15d3b2cf-df3f-80c7-85ee-f3228daf30d9" class="">
+</p></li></ol><ol type="1" id="15d3b2cf-df3f-80da-9d2b-d91acdd4845b" class="numbered-list" start="3"><li>Sprint Backlog<ul id="15d3b2cf-df3f-8085-b719-f328596a21fe" class="bulleted-list"><li style="list-style-type:disc">하나의 Sprint 기간 동안 팀이 완료할 작업 항목</li></ul><ul id="15d3b2cf-df3f-80f6-8b9b-de2b531ea12d" class="bulleted-list"><li style="list-style-type:disc">특징:<ul id="15d3b2cf-df3f-80a3-bd4d-c38a5c733fe2" class="bulleted-list"><li style="list-style-type:circle"><strong>Product Backlog</strong>에서 선택된 항목과 이를 구현하기 위한 구체적인 작업(Task)으로 구성</li></ul><ul id="15d3b2cf-df3f-80b9-932d-ecd1a6d3bf33" class="bulleted-list"><li style="list-style-type:circle"><strong>Development Team</strong>이 주로 관리하며, 매일 업데이트된다.</li></ul></li></ul><figure id="15d3b2cf-df3f-80c5-8770-f49e57e89e0e" class="image"><a href="/assignments/scrum/image%201.png"><img style="width:679.96875px" src="/assignments/scrum/image%201.png"/></a></figure><p id="15d3b2cf-df3f-80d1-91cf-e4286a925732" class="">
+</p></li></ol><ol type="1" id="15d3b2cf-df3f-80e8-b261-e00331aafb15" class="numbered-list" start="4"><li>Burndown Charts (소멸 차트)<ul id="15d3b2cf-df3f-80c2-adda-cfc688ffb285" class="bulleted-list"><li style="list-style-type:disc">남아 있는 작업량을 시각적으로 표시한 그래프.</li></ul><ul id="15d3b2cf-df3f-802a-a103-d36f5f036868" class="bulleted-list"><li style="list-style-type:disc">특징:<ul id="15d3b2cf-df3f-80ed-b2b5-e812c0efdc1c" class="bulleted-list"><li style="list-style-type:circle">X축: 시간 (Sprint 기간)</li></ul><ul id="15d3b2cf-df3f-8029-96ee-e6bb7ac06d4b" class="bulleted-list"><li style="list-style-type:circle">Y축: 남은 작업량 (Story Points, 작업 시간 등)</li></ul></li></ul><ul id="15d3b2cf-df3f-8002-8751-f78b80b7ae02" class="bulleted-list"><li style="list-style-type:disc">목적:<ul id="15d3b2cf-df3f-80f7-a6e1-e3e8912a369b" class="bulleted-list"><li style="list-style-type:circle">팀이 작업 완료 속도를 파악하고, Sprint 목표 달성 가능성을 확인</li></ul><ul id="15d3b2cf-df3f-80cf-82b2-d389a5520d37" class="bulleted-list"><li style="list-style-type:circle">작업 지연이나 리스크를 조기에 식별</li></ul></li></ul><figure id="15d3b2cf-df3f-800c-8577-c867ef7cfbb1" class="image"><a href="/assignments/scrum/image%202.png"><img style="width:377px" src="/assignments/scrum/image%202.png"/></a></figure></li></ol><p id="15d3b2cf-df3f-8016-9e94-ecca82fdc507" class="">
+</p><h2 id="15c3b2cf-df3f-805b-83da-e03e3899dad6" class=""><strong>Scrum의 단계</strong></h2><ol type="1" id="15d3b2cf-df3f-8003-8d20-e18fbed77f87" class="numbered-list" start="1"><li><strong>Sprint Planning (스프린트 계획 회의)</strong><ul id="15d3b2cf-df3f-8067-9a94-e891a678f2ae" class="bulleted-list"><li style="list-style-type:disc">목표: 다가오는 <strong>스프린트(Sprint)</strong> 동안 수행할 작업을 계획하는 것.</li></ul><ul id="15d3b2cf-df3f-800f-9746-c1935b87a2e3" class="bulleted-list"><li style="list-style-type:disc">참여자: <strong>Product Owner, Scrum Master, Development Team</strong></li></ul><ul id="15d3b2cf-df3f-801b-992e-dbadb9616e66" class="bulleted-list"><li style="list-style-type:disc">주요 활동:<ul id="15d3b2cf-df3f-80f2-888a-eae1138d4083" class="bulleted-list"><li style="list-style-type:circle">각 이해관계자들이 우선순위를 정해 이번 Sprint에서 개발할 user story를 선정</li></ul><ul id="15d3b2cf-df3f-804f-ae1d-f1169b0ae5cd" class="bulleted-list"><li style="list-style-type:circle"><strong>Development Team</strong>은 목표를 달성하기 위해 필요한 작업을 분석하고 task 단위로 나눔</li></ul><ul id="15d3b2cf-df3f-80bf-b8a0-c2a2d9c4dd86" class="bulleted-list"><li style="list-style-type:circle">제약 사항 및 Acceptance criteria(승인 조건) 설정</li></ul><ul id="15d3b2cf-df3f-8067-89ee-fd6fd7fd35dd" class="bulleted-list"><li style="list-style-type:circle">각 task의 소요 시간을 정함</li></ul></li></ul><figure id="15d3b2cf-df3f-80d6-bef3-cab523d0b399" class="image"><a href="image%203.png"><img style="width:707.96875px" src="/assignments/scrum/image%203.png"/></a></figure></li></ol><p id="15d3b2cf-df3f-808a-8a78-ee460165e2de" class="">
+</p><ol type="1" id="15d3b2cf-df3f-8024-b4c4-ec41d8be304e" class="numbered-list" start="2"><li><strong>Daily Scrum Meeting (일일 스크럼 미팅)</strong><ul id="15d3b2cf-df3f-8087-ae05-dcaefac1de5c" class="bulleted-list"><li style="list-style-type:disc">목표: 팀 간의 의사소통을 통해 작업 진행 상황을 공유하고 장애물을 해결</li></ul><ul id="15d3b2cf-df3f-8099-a041-d944d4de9a8e" class="bulleted-list"><li style="list-style-type:disc">참여자: 일반적으로 Product Owner를 제외한 Scrum 팀 전체</li></ul><ul id="15d3b2cf-df3f-8089-9023-dd35e758b972" class="bulleted-list"><li style="list-style-type:disc">시간: 15분 내외의 짧은 회의</li></ul><ul id="15d3b2cf-df3f-807b-a16b-faf48658b589" class="bulleted-list"><li style="list-style-type:disc">주요 내용: 각 팀원이 다음 세 가지 질문에 답변.<ul id="15d3b2cf-df3f-80be-a11f-c9043333d9ec" class="bulleted-list"><li style="list-style-type:circle">어제 한 작업과 오늘 할 작업</li></ul><ul id="15d3b2cf-df3f-809f-a24d-f8159027ad35" class="bulleted-list"><li style="list-style-type:circle">공유해야 할 이슈가 있는지</li></ul><ul id="15d3b2cf-df3f-80f7-86ea-d0518e77a4e3" class="bulleted-list"><li style="list-style-type:circle">다른 팀원과의 협력이 필요한 사항</li></ul></li></ul><ul id="15d3b2cf-df3f-80d8-978d-e4fef6cbafe7" class="bulleted-list"><li style="list-style-type:disc">이 회의는 문제 해결이 아닌 상황 공유에 초점</li></ul></li></ol><p id="15d3b2cf-df3f-8093-a36c-d0a6bd302ac6" class="">
+</p><ol type="1" id="15d3b2cf-df3f-80e9-9fb1-de27852acabb" class="numbered-list" start="3"><li><strong>Sprint Review (스프린트 리뷰)</strong><ul id="15d3b2cf-df3f-803d-90ba-c9fe5cee4b2d" class="bulleted-list"><li style="list-style-type:disc">목표: Sprint 기간 동안 완성된 작업물을 점검하고 사용자에게 피드백을 받는 것</li></ul><ul id="15d3b2cf-df3f-80a2-a9b8-d876ce70108a" class="bulleted-list"><li style="list-style-type:disc">참여자: Scrum 팀, 이해관계자(Stakeholders)</li></ul><ul id="15d3b2cf-df3f-80ee-b09b-f4da5214d431" class="bulleted-list"><li style="list-style-type:disc">시간: 2시간 이내</li></ul><ul id="15d3b2cf-df3f-8075-840c-f701a7290a95" class="bulleted-list"><li style="list-style-type:disc">주요 활동:<ul id="15d3b2cf-df3f-80c5-9cc0-fa0f8b0fa1a1" class="bulleted-list"><li style="list-style-type:circle">팀은 완성된 작업물(또는 기능)을 시연</li></ul><ul id="15d3b2cf-df3f-8093-9efd-ec5456b3319d" class="bulleted-list"><li style="list-style-type:circle">이해관계자로부터 피드백 수집</li></ul><ul id="15d3b2cf-df3f-80d4-8cb8-dca5d3003be6" class="bulleted-list"><li style="list-style-type:circle">제품의 미래 방향성 및 변경 사항 논의</li></ul></li></ul><ul id="15d3b2cf-df3f-8074-997b-f6b61f70c2b0" class="bulleted-list"><li style="list-style-type:disc">결과: Product Backlog가 업데이트되고, 차기 Sprint에 반영할 변경 사항 제안</li></ul></li></ol><p id="15d3b2cf-df3f-80cb-8df0-e5a04fed9bfd" class="">
+</p><ol type="1" id="15d3b2cf-df3f-80e4-96ac-d22df1120d96" class="numbered-list" start="4"><li><strong>Sprint Retrospective (스프린트 회고)</strong><ul id="15d3b2cf-df3f-8006-bc73-deb2555e190c" class="bulleted-list"><li style="list-style-type:disc">목표: 스프린트의 과정을 돌아보고 평가하여, 스크럼 프로세스를 개선하기 위한 구체적인 방안을 마련한다.</li></ul><ul id="15d3b2cf-df3f-800c-9637-c8e2596753f1" class="bulleted-list"><li style="list-style-type:disc">참여자: Scrum 팀, 이해관계자(Stakeholders)</li></ul><ul id="15d3b2cf-df3f-8089-9805-cc0fcec5e792" class="bulleted-list"><li style="list-style-type:disc">시간: 15-30분</li></ul><ul id="15d3b2cf-df3f-8077-b06f-cd3bb4588186" class="bulleted-list"><li style="list-style-type:disc">주요 활동:<ul id="15d3b2cf-df3f-807a-b264-f8f267da852a" class="bulleted-list"><li style="list-style-type:circle">무엇이 잘 되었는가?</li></ul><ul id="15d3b2cf-df3f-809c-8eeb-d4a323cdaeb6" class="bulleted-list"><li style="list-style-type:circle">무엇이 개선되어야 하는가?</li></ul><ul id="15d3b2cf-df3f-80eb-8ef5-e92c29735e02" class="bulleted-list"><li style="list-style-type:circle">다음 스프린트에 실천할 수 있는 개선 방안은 무엇인가?</li></ul></li></ul><ul id="15d3b2cf-df3f-80e6-bd1a-d99fbd1bed78" class="bulleted-list"><li style="list-style-type:disc">결과: 스크럼 프로세스 개선</li></ul></li></ol><p id="15d3b2cf-df3f-8025-aa45-f0bf2314c7aa" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
